@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CVSITE21.Models;
+using CVSITE21.Data;
 
 namespace CVSITE21.Controllers
 {

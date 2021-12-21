@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using CVSITE21.Models;
+using CVSITE21.Data;
 
 namespace CVSITE21
 {
