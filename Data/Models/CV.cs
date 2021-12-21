@@ -8,5 +8,6 @@ namespace Data.Models
 {
     internal class CV
     {
+
     }
 }
