@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Models
+namespace Models
 {
     internal class Project
     {
@@ -14,6 +14,5 @@ namespace Data.Models
         public string Description { get; set; }
         public DateTime Created { get; set; }
         public string ImagePath { get; set; }
-
     }
 }
