@@ -26,5 +26,14 @@ namespace CVSITE21.Controllers
 
             return View();
         }
+
+        //[Route("home/projects")]
+        public ActionResult Projects()
+        {
+            ViewBag.Message = "Projects to display.";
+
+            return View();
+        }
+
     }
 }
