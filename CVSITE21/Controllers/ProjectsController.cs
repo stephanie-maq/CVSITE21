@@ -16,16 +16,28 @@ namespace CVSITE21.Controllers
        // private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
+
             using (var context = new ApplicationDbContext())
             {
                 var projects = context.Projects.ToList();
-                return View(projects);
+                {
+                    
+                    if (searchBy == "Date" && search != "")
+                    {
+                        return View(context.Projects.Where(x => x.Created.ToString().ToLower().Contains(search.ToLower().ToString()) ).ToList());
+                    }
+                    else if(searchBy == "Name" && search != "")
+                    {
+                        return View(context.Projects.Where(x => x.Title.ToLower().Contains(search.ToLower().ToString()) ).ToList());
+                    }
+                    else { return View(projects); }
+                }
             }
-        }
 
-        // GET: Projects/Details/5
+        }
+        
         public ActionResult Details(int? id)
         {
             using (var context = new ApplicationDbContext())
@@ -157,5 +169,7 @@ namespace CVSITE21.Controllers
                 base.Dispose(disposing);
             }
         }
+
+        
     }
 }
