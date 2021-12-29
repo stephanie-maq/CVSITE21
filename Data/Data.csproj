@@ -58,13 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDBcontext.cs" />
-    <Compile Include="Migrations\202112291603040_InitialCreate.cs" />
-    <Compile Include="Migrations\202112291603040_InitialCreate.designer.cs">
-      <DependentUpon>202112291603040_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202112291917160_init.cs" />
-    <Compile Include="Migrations\202112291917160_init.designer.cs">
-      <DependentUpon>202112291917160_init.cs</DependentUpon>
+    <Compile Include="Migrations\202112291917160_cv.cs" />
+    <Compile Include="Migrations\202112291917160_cv.designer.cs">
+      <DependentUpon>202112291917160_cv.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CV.cs" />
@@ -77,11 +73,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202112291603040_InitialCreate.resx">
-      <DependentUpon>202112291603040_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202112291917160_init.resx">
-      <DependentUpon>202112291917160_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112291917160_cv.resx">
+      <DependentUpon>202112291917160_cv.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
