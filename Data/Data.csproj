@@ -61,6 +61,9 @@
     <Compile Include="Migrations\202112291917160_cv.cs" />
     <Compile Include="Migrations\202112291917160_cv.designer.cs">
       <DependentUpon>202112291917160_cv.cs</DependentUpon>
+    <Compile Include="Migrations\202112292016397_init.cs" />
+    <Compile Include="Migrations\202112292016397_init.designer.cs">
+      <DependentUpon>202112292016397_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CV.cs" />
@@ -73,6 +76,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202112292016397_init.resx">
+      <DependentUpon>202112292016397_init.cs</DependentUpon>
     <EmbeddedResource Include="Migrations\202112291917160_cv.resx">
       <DependentUpon>202112291917160_cv.cs</DependentUpon>
     </EmbeddedResource>
