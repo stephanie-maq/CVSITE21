@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDBcontext.cs" />
+    <Compile Include="Migrations\202112291917160_cv.cs" />
+    <Compile Include="Migrations\202112291917160_cv.designer.cs">
+      <DependentUpon>202112291917160_cv.cs</DependentUpon>
     <Compile Include="Migrations\202112292016397_init.cs" />
     <Compile Include="Migrations\202112292016397_init.designer.cs">
       <DependentUpon>202112292016397_init.cs</DependentUpon>
@@ -75,6 +78,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202112292016397_init.resx">
       <DependentUpon>202112292016397_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202112291917160_cv.resx">
+      <DependentUpon>202112291917160_cv.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
