@@ -8,31 +8,12 @@ namespace CVSITE21.Models
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
-
-        public bool Private { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
-
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
-    public class ProfileInfoViewModel
-    {
-        public bool HasPassword { get; set; }
-        public IList<UserLoginInfo> Logins { get; set; }
 
-        public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
-        public bool BrowserRemembered { get; set; }
-        public string Fullname { get; set; }
-        public string Country { get; set; }
-        public int Age { get; set; }
-        public string Experience { get; set; }
-        public string Education { get; set; }
-        public string Skills { get; set; }
-        public string Languages { get; set; }
-        public string imagePath { get; set; }
-    }
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
@@ -76,29 +57,6 @@ namespace CVSITE21.Models
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
-
-    public class ChangeUsernameViewModel
-    {
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [Display(Name = "New Username")]
-        public string NewUsername { get; set; }
-
-    }
-    public class ChangeAdressViewModel
-    {
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [Display(Name = "New Adress")]
-        public string NewAdress { get; set; }
-
-    }
-
-    /*public class PrivateOrPublicAccountViewModel
-    {
-        [Display(Name = "Private")]
-        public bool IsPrivate { get; set; }
-    }*/
 
     public class AddPhoneNumberViewModel
     {

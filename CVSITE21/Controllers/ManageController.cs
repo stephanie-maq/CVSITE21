@@ -32,9 +32,9 @@ namespace CVSITE21.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -212,20 +212,7 @@ namespace CVSITE21.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
-        public ActionResult ProfileInfo()
-        {
-            return View();
-        }
 
-        public ActionResult ChangeUsername()
-        {
-            return View();
-        }
-
-        public ActionResult ChangeAdress()
-        {
-            return View();
-        }
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
@@ -346,7 +333,7 @@ namespace CVSITE21.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -397,6 +384,6 @@ namespace CVSITE21.Controllers
             Error
         }
 
-        #endregion
+#endregion
     }
 }
