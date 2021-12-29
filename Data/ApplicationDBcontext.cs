@@ -22,7 +22,7 @@ namespace CVSITE21.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Data Source=(LocalDb)\\MSSQLLocalDB", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
