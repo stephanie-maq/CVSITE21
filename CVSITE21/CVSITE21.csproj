@@ -247,9 +247,7 @@
     <Content Include="Views\Manage\ChangeAdress.cshtml" />
     <Content Include="Views\Manage\ProfileInfo.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
