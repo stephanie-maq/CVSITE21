@@ -27,11 +27,12 @@ namespace CVSITE21.Data
         }
 
         public DbSet<Project> Projects { get; set; }
+        public DbSet<CV> CVs { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
 
-        
+
     }
 }
