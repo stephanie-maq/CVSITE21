@@ -245,6 +245,7 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
     <Content Include="Views\Manage\ChangeAdress.cshtml" />
+    <Content Include="Views\Profile\ProfileView.cshtml" />
     <Content Include="Views\Manage\ProfileInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
