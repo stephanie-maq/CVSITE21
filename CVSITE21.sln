@@ -4,10 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVSITE21", "CVSITE21\CVSITE21.csproj", "{0BA38D04-044B-4C5E-9EFE-25237C92E931}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C635FE06-EB20-4404-AAA2-0E9825F7C5AF} = {C635FE06-EB20-4404-AAA2-0E9825F7C5AF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{D5F03A5D-73F7-4F00-B4D8-155307B916FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{578D3AE6-2145-4807-8AB5-BC578F2C5A7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{C635FE06-EB20-4404-AAA2-0E9825F7C5AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{578D3AE6-2145-4807-8AB5-BC578F2C5A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{578D3AE6-2145-4807-8AB5-BC578F2C5A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{578D3AE6-2145-4807-8AB5-BC578F2C5A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C635FE06-EB20-4404-AAA2-0E9825F7C5AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C635FE06-EB20-4404-AAA2-0E9825F7C5AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C635FE06-EB20-4404-AAA2-0E9825F7C5AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C635FE06-EB20-4404-AAA2-0E9825F7C5AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
