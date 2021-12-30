@@ -237,7 +237,6 @@ namespace CVSITE21.Controllers
             result.UserName = model.NewUsername;
             await UserManager.UpdateAsync(result);
 
-            //TODO: Check if the username already existed in database
             /*  var modell = new ChangeUsernameViewModel
               {
                   NewUsername = model.NewUsername,
