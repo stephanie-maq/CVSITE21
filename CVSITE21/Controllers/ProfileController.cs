@@ -14,13 +14,6 @@ namespace CVSITE21.Controllers
             return View();
         }
 
-        // GET: Profile/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Profile/Create
         public ActionResult Create()
         {
             return View();

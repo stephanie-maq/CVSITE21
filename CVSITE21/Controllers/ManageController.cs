@@ -213,20 +213,12 @@ namespace CVSITE21.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-        public ActionResult ProfileInfo()
-        {
-            return View();
-        }
 
         public ActionResult ChangeUsername()
         {
             return View();
         }
 
-        public ActionResult ChangeAdress()
-        {
-            return View();
-        }
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
