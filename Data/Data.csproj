@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202112292114182_profile.designer.cs">
       <DependentUpon>202112292114182_profile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112300155346_ProjectsDeletedProperty.cs" />
+    <Compile Include="Migrations\202112300155346_ProjectsDeletedProperty.designer.cs">
+      <DependentUpon>202112300155346_ProjectsDeletedProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112292114182_profile.resx">
       <DependentUpon>202112292114182_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112300155346_ProjectsDeletedProperty.resx">
+      <DependentUpon>202112300155346_ProjectsDeletedProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
