@@ -82,8 +82,13 @@
     <Compile Include="Migrations\202201012316234__AcademicExperience.designer.cs">
       <DependentUpon>202201012316234__AcademicExperience.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201012320040__CV.cs" />
+    <Compile Include="Migrations\202201012320040__CV.designer.cs">
+      <DependentUpon>202201012320040__CV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcademicExperience.cs" />
+    <Compile Include="Models\CVcs.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Skills.cs" />
@@ -111,6 +116,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201012316234__AcademicExperience.resx">
       <DependentUpon>202201012316234__AcademicExperience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201012320040__CV.resx">
+      <DependentUpon>202201012320040__CV.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
