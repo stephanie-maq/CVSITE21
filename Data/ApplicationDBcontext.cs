@@ -30,6 +30,7 @@ namespace CVSITE21.Data
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Skills> Skills { get; set; }
         public DbSet<CV> CVs { get; set; }
+        public DbSet<WorkExperience> WorkExperiences { get; set; }
         public DbSet<AcademicExperience> AcademicExperiences { get; set; }
         public static ApplicationDbContext Create()
         {
