@@ -94,12 +94,19 @@
     <Compile Include="Migrations\202201020155172_remove_fields_from_profile.designer.cs">
       <DependentUpon>202201020155172_remove_fields_from_profile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201020128349_remove_cv.cs" />
+    <Compile Include="Migrations\202201020128349_remove_cv.designer.cs">
+      <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201020202193_add_keys_and_refactor.cs" />
+    <Compile Include="Migrations\202201020202193_add_keys_and_refactor.designer.cs">
+      <DependentUpon>202201020202193_add_keys_and_refactor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcademicExperience.cs" />
-    <Compile Include="Models\CV.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\Skills.cs" />
+    <Compile Include="Models\Skill.cs" />
     <Compile Include="Models\WorkExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -134,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201020155172_remove_fields_from_profile.resx">
       <DependentUpon>202201020155172_remove_fields_from_profile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201020128349_remove_cv.resx">
+      <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201020202193_add_keys_and_refactor.resx">
+      <DependentUpon>202201020202193_add_keys_and_refactor.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
