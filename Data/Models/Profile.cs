@@ -19,7 +19,7 @@ namespace Data.Models
 
         public ICollection<AcademicExperience> AcademicExperiences { get; set; }
         public ICollection<Project> Projects { get; set; }
-        public ICollection<Skills> Skills { get; set; }
+        public ICollection<Skill> Skills { get; set; }
         public ICollection<WorkExperience> WorkExperiences { get; set; }
     }
 }

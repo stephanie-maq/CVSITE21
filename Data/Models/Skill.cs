@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Data.Models
 {
-    public class Skills
+    public class Skill
     {
         [Key]
         public int Id { get; set; }
