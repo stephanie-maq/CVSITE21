@@ -31,7 +31,6 @@
             DropColumn("dbo.Profiles", "Id");
             DropColumn("dbo.Profiles", "Languages");
             DropColumn("dbo.Projects", "Created");
-            DropTable("dbo.CVs");
         }
         
         public override void Down()
