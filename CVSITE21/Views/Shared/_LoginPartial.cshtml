@@ -3,12 +3,13 @@
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-@Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
 <ul class="nav navbar-nav navbar-right">
     <li>
         @Html.ActionLink("Profile ", "index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
     </li>
+    <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
     <li>
         @Html.ActionLink("Settings ", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
     </li>
@@ -18,8 +19,8 @@
 }
 else
 {
-<ul class="nav navbar-nav navbar-right">
-    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-</ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
 }
