@@ -90,6 +90,10 @@
     <Compile Include="Migrations\202201012323295__WorkExperience.designer.cs">
       <DependentUpon>202201012323295__WorkExperience.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201020155172_remove_fields_from_profile.cs" />
+    <Compile Include="Migrations\202201020155172_remove_fields_from_profile.designer.cs">
+      <DependentUpon>202201020155172_remove_fields_from_profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202201020128349_remove_cv.cs" />
     <Compile Include="Migrations\202201020128349_remove_cv.designer.cs">
       <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201012323295__WorkExperience.resx">
       <DependentUpon>202201012323295__WorkExperience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201020155172_remove_fields_from_profile.resx">
+      <DependentUpon>202201020155172_remove_fields_from_profile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201020128349_remove_cv.resx">
       <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
