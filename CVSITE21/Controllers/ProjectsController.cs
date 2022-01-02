@@ -16,7 +16,7 @@ namespace CVSITE21.Controllers
         // private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
-        [Authorize]
+
         public ActionResult Index(string searchBy, string search)
         {
 
