@@ -90,9 +90,12 @@
     <Compile Include="Migrations\202201012323295__WorkExperience.designer.cs">
       <DependentUpon>202201012323295__WorkExperience.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201020128349_remove_cv.cs" />
+    <Compile Include="Migrations\202201020128349_remove_cv.designer.cs">
+      <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcademicExperience.cs" />
-    <Compile Include="Models\CV.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\Skills.cs" />
@@ -127,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201012323295__WorkExperience.resx">
       <DependentUpon>202201012323295__WorkExperience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201020128349_remove_cv.resx">
+      <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
