@@ -13,7 +13,7 @@ namespace CVSITE21.Controllers
 {
     public class ProjectsController : Controller
     {
-       // private ApplicationDbContext db = new ApplicationDbContext();
+        // private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
         public ActionResult Index(string searchBy, string search)
@@ -23,21 +23,21 @@ namespace CVSITE21.Controllers
             {
                 var projects = context.Projects.ToList();
                 {
-                    
+
                     if (searchBy == "Date" && search != "")
                     {
-                        return View(context.Projects.Where(x => x.Created.ToString().ToLower().Contains(search.ToLower().ToString()) ).ToList());
+                        return View(context.Projects.Where(x => x.DateCreated.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                     }
-                    else if(searchBy == "Name" && search != "")
+                    else if (searchBy == "Name" && search != "")
                     {
-                        return View(context.Projects.Where(x => x.Title.ToLower().Contains(search.ToLower().ToString()) ).ToList());
+                        return View(context.Projects.Where(x => x.Title.ToLower().Contains(search.ToLower().ToString())).ToList());
                     }
                     else { return View(projects); }
                 }
             }
 
         }
-        
+
         public ActionResult Details(int? id)
         {
             using (var context = new ApplicationDbContext())
@@ -68,7 +68,7 @@ namespace CVSITE21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,Created,ImagePath")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateCreated,ImagePath")] Project project)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -108,7 +108,7 @@ namespace CVSITE21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,Created,ImagePath")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description,DateCreated,ImagePath")] Project project)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -170,6 +170,6 @@ namespace CVSITE21.Controllers
             }
         }
 
-        
+
     }
 }

@@ -1,0 +1,18 @@
+﻿namespace Data.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class changes : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.Profiles", "Languages");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.Profiles", "Languages", c => c.String());
+        }
+    }
+}
