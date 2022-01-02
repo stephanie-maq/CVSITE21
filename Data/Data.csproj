@@ -94,14 +94,6 @@
     <Compile Include="Migrations\202201020128349_remove_cv.designer.cs">
       <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201020135085_add_foreign_keys_and_refactor_fields.cs" />
-    <Compile Include="Migrations\202201020135085_add_foreign_keys_and_refactor_fields.designer.cs">
-      <DependentUpon>202201020135085_add_foreign_keys_and_refactor_fields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201020145342_changes.cs" />
-    <Compile Include="Migrations\202201020145342_changes.designer.cs">
-      <DependentUpon>202201020145342_changes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AcademicExperience.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -141,12 +133,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201020128349_remove_cv.resx">
       <DependentUpon>202201020128349_remove_cv.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201020135085_add_foreign_keys_and_refactor_fields.resx">
-      <DependentUpon>202201020135085_add_foreign_keys_and_refactor_fields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201020145342_changes.resx">
-      <DependentUpon>202201020145342_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
