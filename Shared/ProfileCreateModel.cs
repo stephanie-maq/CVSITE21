@@ -16,7 +16,7 @@ namespace Shared
         public string Education { get; set; }
         public string Skills { get; set; }
         public string Languages { get; set; }
-        public string ImagePath { get; set; }
+        public HttpPostedFileBase ImagePath { get; set; }
 
     }
 }

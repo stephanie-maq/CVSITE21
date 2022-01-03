@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CVSITE21.Data;
+using Data.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Shared;
 
 namespace CVSITE21.Controllers
 {
@@ -21,19 +25,21 @@ namespace CVSITE21.Controllers
 
         // POST: Profile/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        /* public ActionResult Create(ProfileCreateModel model)
+         {
+             try
+             {
+                 var context = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                 var
+
+                 return RedirectToAction("Index");
+             }
+             catch
+             {
+                 return View();
+             }
+         }*/
 
         // GET: Profile/Edit/5
         public ActionResult Edit(int id)
