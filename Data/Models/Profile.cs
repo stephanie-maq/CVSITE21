@@ -14,9 +14,6 @@ namespace Data.Models
         [Key]
         public string Email { get; set; }
 
-        [ForeignKey(nameof(SavedByUser))]
-        public string SavedByUserId { get; set; }
-        public virtual ApplicationUser SavedByUser { get; set; }
 
         public string Fullname { get; set; }
         public string Address { get; set; }
