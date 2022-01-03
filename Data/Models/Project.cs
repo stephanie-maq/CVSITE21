@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CVSITE21.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,6 +13,11 @@ namespace Data.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [ForeignKey(nameof(SavedByUser))]
+        public string SavedByUserId { get; set; }
+        public virtual ApplicationUser SavedByUser { get; set; }
+
 
         [ForeignKey("ProfileEmail")]
         public string Email { get; set; }

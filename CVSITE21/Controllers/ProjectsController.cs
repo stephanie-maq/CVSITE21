@@ -11,11 +11,14 @@ using Data.Models;
 
 namespace CVSITE21.Controllers
 {
+    
+
     public class ProjectsController : Controller
     {
         // private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Projects
+        
 
         public ActionResult Index(string searchBy, string search)
         {
@@ -75,6 +78,18 @@ namespace CVSITE21.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    //_httpcontext=System.Web.HttpContext.Current
+                    //var username = _httpcontext.User.Identity.Name;
+                    var service = System.Web.HttpContext.Current;
+                    var username = service.User.Identity.Name;
+                    if (!string.IsNullOrEmpty(username))
+                    {
+                        var user = context.Users.FirstOrDefault(x => x.UserName == username);
+                        if (user != null)
+                        {
+                            project.SavedByUser = user;
+                        }
+                    }
                     context.Projects.Add(project);
                     context.SaveChanges();
                     return RedirectToAction("Index");
