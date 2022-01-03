@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Data;
 using Data.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Shared;
 
@@ -13,9 +18,14 @@ namespace CVSITE21.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var profils = await context.Profiles.FindAsync(User.Identity.GetUserId());
+                return View(profils);
+            }
+
         }
 
         public ActionResult Create()
@@ -25,21 +35,35 @@ namespace CVSITE21.Controllers
 
         // POST: Profile/Create
         [HttpPost]
-        /* public ActionResult Create(ProfileCreateModel model)
-         {
-             try
-             {
-                 var context = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+        public ActionResult Create(ProfileCreateModel model)
+        {
+            try
+            {
+                using (var context = new ApplicationDbContext())
+                {
+                    var newProfile = new Profile()
+                    {
+                        Fullname = model.Fullname,
+                        Address = model.Address,
+                        Age = model.Age
+                    };
 
-                 var
+                    var filename = model.ImagePath.FileName;
+                    var filepath = Server.MapPath("~/images");
+                    model.ImagePath.SaveAs(filepath + "/" + filename);
 
-                 return RedirectToAction("Index");
-             }
-             catch
-             {
-                 return View();
-             }
-         }*/
+                    newProfile.ImagePath = filename;
+
+                    context.Profiles.Add(newProfile);
+                    context.SaveChanges();
+                };
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // GET: Profile/Edit/5
         public ActionResult Edit(int id)
