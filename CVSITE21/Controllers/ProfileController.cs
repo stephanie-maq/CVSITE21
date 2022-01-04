@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CVSITE21.Data;
+using Data.Models;
 
 namespace CVSITE21.Controllers
 {
@@ -21,12 +24,27 @@ namespace CVSITE21.Controllers
 
         // POST: Profile/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ProfileCreateModel model)
         {
             try
             {
-                // TODO: Add insert logic here
+                using (var context = new ApplicationDbContext())
+                {
+                    var newProfile = new Profile()
+                    {
+                        Fullname = model.Fullname,
+                        Address = model.Address,
+                        Age = model.Age,
+                        ImagePath = model.ImagePath,
+                        Skills = model.Skills,
+                        WorkExperiences = model.Experience,
+                        AcademicExperiences = model.Education
 
+                    };
+
+                    context.Profiles.Add(newProfile);
+                    context.SaveChanges();
+                };
                 return RedirectToAction("Index");
             }
             catch
