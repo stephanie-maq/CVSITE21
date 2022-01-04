@@ -6,15 +6,22 @@ using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Data;
 using Data.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace CVSITE21.Controllers
 {
     public class ProfileController : Controller
     {
         // GET: Profile
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var profils = await context.Profiles.FindAsync(User.Identity.GetUserId());
+                return View(profils);
+            }
+
         }
 
         public ActionResult Create()
