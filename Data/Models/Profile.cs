@@ -9,17 +9,16 @@ namespace Data.Models
 {
     public class Profile
     {
-        [Key]
-        public string Email { get; set; }
+        [Key] public string Email { get; set; }
 
         public string Fullname { get; set; }
         public string Address { get; set; }
         public int Age { get; set; }
         public string ImagePath { get; set; }
 
-        public ICollection<AcademicExperience> AcademicExperiences { get; set; }
+        public string AcademicExperiences { get; set; }
+        public string Skills { get; set; }
+        public string WorkExperiences { get; set; }
         public ICollection<Project> Projects { get; set; }
-        public ICollection<Skill> Skills { get; set; }
-        public ICollection<WorkExperience> WorkExperiences { get; set; }
     }
 }

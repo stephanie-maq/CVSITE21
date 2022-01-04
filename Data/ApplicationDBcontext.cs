@@ -28,9 +28,7 @@ namespace CVSITE21.Data
 
         public DbSet<Project> Projects { get; set; }
         public DbSet<Profile> Profiles { get; set; }
-        public DbSet<Skill> Skills { get; set; }
-        public DbSet<WorkExperience> WorkExperiences { get; set; }
-        public DbSet<AcademicExperience> AcademicExperiences { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
