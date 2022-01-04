@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CVSITE21.Models;
 using CVSITE21.Data;
+using Data.Models;
 
 namespace CVSITE21.Controllers
 {
@@ -160,6 +161,15 @@ namespace CVSITE21.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    using (var context = new ApplicationDbContext())
+                    {
+                        var newProfile = new Profile
+                        {
+                            Email = model.Email
+                        };
+                        context.Profiles.Add(newProfile);
+                        await context.SaveChangesAsync();
+                    }
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

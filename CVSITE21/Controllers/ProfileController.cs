@@ -1,37 +1,68 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CVSITE21.Data;
+using Data.Models;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Logging;
 
 namespace CVSITE21.Controllers
 {
     public class ProfileController : Controller
     {
         // GET: Profile
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
+                return View(profile);
+            }
+
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                string userEmail = User.Identity.Name;
+                Profile profile = await context.Profiles.FindAsync(userEmail);
+                return View(profile);
+            }
+
         }
 
         // POST: Profile/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(Profile model)
         {
             try
             {
-                // TODO: Add insert logic here
+
+                using (var context = new ApplicationDbContext())
+                {
+                    Console.WriteLine(User.Identity.GetUserId());
+                    Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
+                    profile.WorkExperiences = model.WorkExperiences;
+                    profile.Age = model.Age;
+                    profile.Address = model.Address;
+                    profile.Fullname = model.Fullname;
+                    profile.AcademicExperiences = model.AcademicExperiences;
+                    profile.ImagePath = model.ImagePath;
+                    profile.Skills = model.Skills;
+
+                    await context.SaveChangesAsync();
+                };
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
