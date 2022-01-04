@@ -8,6 +8,7 @@ using CVSITE21.Data;
 using Data.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Logging;
 
 namespace CVSITE21.Controllers
 {
@@ -18,45 +19,50 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                var profils = await context.Profiles.FindAsync(User.Identity.GetUserId());
-                return View(profils);
+                Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
+                return View(profile);
             }
 
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                string userEmail = User.Identity.Name;
+                Profile profile = await context.Profiles.FindAsync(userEmail);
+                return View(profile);
+            }
+
         }
 
         // POST: Profile/Create
         [HttpPost]
-        public ActionResult Create(ProfileCreateModel model)
+        public async Task<ActionResult> Create(Profile model)
         {
             try
             {
+
                 using (var context = new ApplicationDbContext())
                 {
-                    var newProfile = new Profile()
-                    {
-                        Fullname = model.Fullname,
-                        Address = model.Address,
-                        Age = model.Age,
-                        ImagePath = model.ImagePath,
-                        Skills = model.Skills,
-                        WorkExperiences = model.Experience,
-                        AcademicExperiences = model.Education
+                    Console.WriteLine(User.Identity.GetUserId());
+                    Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
+                    profile.WorkExperiences = model.WorkExperiences;
+                    profile.Age = model.Age;
+                    profile.Address = model.Address;
+                    profile.Fullname = model.Fullname;
+                    profile.AcademicExperiences = model.AcademicExperiences;
+                    profile.ImagePath = model.ImagePath;
+                    profile.Skills = model.Skills;
 
-                    };
-
-                    context.Profiles.Add(newProfile);
-                    context.SaveChanges();
+                    await context.SaveChangesAsync();
                 };
+
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(model);
             }
         }
 
