@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Data;
 using Data.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CVSITE21.Controllers
 {
@@ -59,6 +60,7 @@ namespace CVSITE21.Controllers
         }
 
         // GET: Projects/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -75,7 +77,9 @@ namespace CVSITE21.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string username = User.Identity.GetUserName();
                     context.Projects.Add(project);
+                    project.CreatedBy = username;
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -89,18 +93,27 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                if (id == null)
+                var username = System.Web.HttpContext.Current.User.Identity.Name;
+                if (!string.IsNullOrEmpty(username))
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
+                    var projectet = context.Projects.FirstOrDefault(x => x.Id == id);
+                    if (projectet.CreatedBy == username)
+                    {
+                        if (id == null)
+                        {
+                            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        }
 
-                Project project = context.Projects.Find(id);
-                if (project == null)
-                {
-                    return HttpNotFound();
-                }
+                        Project project = context.Projects.Find(id);
+                        if (project == null)
+                        {
+                            return HttpNotFound();
+                        }
 
-                return View(project);
+                        return View(project);
+                    }
+                }
+                 return Redirect("~/Projects"); 
             }
         }
 

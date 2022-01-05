@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202201052053077_IsPrivate.designer.cs">
       <DependentUpon>202201052053077_IsPrivate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201052225371_projectCreatedBy.cs" />
+    <Compile Include="Migrations\202201052225371_projectCreatedBy.designer.cs">
+      <DependentUpon>202201052225371_projectCreatedBy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201052053077_IsPrivate.resx">
       <DependentUpon>202201052053077_IsPrivate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201052225371_projectCreatedBy.resx">
+      <DependentUpon>202201052225371_projectCreatedBy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
