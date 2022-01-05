@@ -25,7 +25,21 @@ namespace CVSITE21.Controllers
         // GET: Image/Create
         public ActionResult Create()
         {
-            return View();
+            
+            using (var context = new ApplicationDbContext())
+            {
+                var username = System.Web.HttpContext.Current.User.Identity.Name;
+                var user = context.Profiles.First(a => a.Email == username);
+                if (user.Fullname == null)
+                {
+                    return Redirect("~/Profile/create");
+                }
+                else
+                {
+                    return View();
+                }
+
+            }
         }
 
         // POST: Image/Create
@@ -36,6 +50,9 @@ namespace CVSITE21.Controllers
             {
                 using (var context = new ApplicationDbContext())
                 {
+                    
+                    
+                   
                     var newImg = new SaveImage()
                     { };
 
@@ -45,16 +62,17 @@ namespace CVSITE21.Controllers
 
                     newImg.ImagePath = filename;
                     var filenameraw = filename.ToString();
-
                     var username = System.Web.HttpContext.Current.User.Identity.Name;
-
-
                     var user = context.Profiles.First(a => a.Email == username);
+
+
+
                     user.ImagePath = filenameraw;
                     context.SaveChanges();
+                    
                 }
 
-                return RedirectToAction("Index");
+                return Redirect("~/Profile");
             }
             catch
             {
