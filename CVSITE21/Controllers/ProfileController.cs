@@ -40,10 +40,10 @@ namespace CVSITE21.Controllers
 
                         if (search != null && search != "")
                         {
-                            return View(context.Profiles.Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                         }
-                        if (search == "") { return View(profiles); }
-                        else { return View(profiles); }
+                        if (search == "") { return View(profiles.Where(x => x.Fullname != null)); }
+                        else { return View(profiles.Where(x => x.Fullname != null)); }
                     
                     }
                 }
@@ -53,9 +53,9 @@ namespace CVSITE21.Controllers
 
                         if (search != null && search != "")
                         {
-                            return View(context.Profiles.Where(x => x.IsPrivate.Equals(false)).Where( x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Where( x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                         }
-                        if (search == "") { return View(profiles.Where(x => x.IsPrivate.Equals(false))); }
+                        if (search == "") { return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); }
                         else { return View(profiles.Where(x => x.IsPrivate.Equals(false))); }
 
                     }

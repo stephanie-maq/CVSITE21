@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CVSITE21.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,26 @@ namespace CVSITE21.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var username = System.Web.HttpContext.Current.User.Identity.Name;
+                if (username != "")
+                {
+                    var profiles = context.Profiles.ToList();
+                    {
+                        return View(context.Profiles.Where(x => x.Fullname != null).ToList());
+                    }
+                }
+                else
+                {
+                    var profiles = context.Profiles.ToList();
+                    {
+                        return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); 
+
+                    }
+                }
+            }
+           
         }
 
         public ActionResult About()

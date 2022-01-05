@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Data.Models.Profile>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -14,10 +15,40 @@
         <p>
             Here goes a list of registered CVs
         </p>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Fullname)
+                </th>
+                <th></th>
+            </tr>
+
+            @if (Model.Count() == 0 )
+            {
+                <tr>
+                    <td colspan="2">There are no CV's</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Fullname)
+                        </td>
+
+                        <td>
+
+                            @Html.ActionLink("View profile", "Details", new { id = item.UserId }) |
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
     </div>
 
     <div class="col-md-6">
