@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Logging;
 using System.Net;
-using System.Web;
 
 namespace CVSITE21.Controllers
 {
