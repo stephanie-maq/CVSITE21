@@ -23,7 +23,7 @@ namespace CVSITE21.Controllers
                 Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
                 return View(profile);
             }
-
+        
         }
 
         public async Task<ActionResult> Create()
