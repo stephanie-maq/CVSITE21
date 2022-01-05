@@ -29,7 +29,7 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                string userEmail = User.Identity.Name;
+                string userEmail = User.Identity.GetUserName();
                 Profile profile = await context.Profiles.FindAsync(userEmail);
                 return View(profile);
             }
@@ -45,12 +45,13 @@ namespace CVSITE21.Controllers
 
                 using (var context = new ApplicationDbContext())
                 {
-                    Console.WriteLine(User.Identity.GetUserId());
+
                     Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
                     profile.WorkExperiences = model.WorkExperiences;
                     profile.Age = model.Age;
                     profile.Address = model.Address;
                     profile.Fullname = model.Fullname;
+                    profile.Email = model.Email;
                     profile.AcademicExperiences = model.AcademicExperiences;
                     profile.ImagePath = model.ImagePath;
                     profile.Skills = model.Skills;

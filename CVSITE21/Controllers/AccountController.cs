@@ -165,6 +165,7 @@ namespace CVSITE21.Controllers
                     {
                         var newProfile = new Profile
                         {
+                            UserId = model.Email,
                             Email = model.Email
                         };
                         context.Profiles.Add(newProfile);
