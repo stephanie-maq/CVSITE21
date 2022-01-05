@@ -107,6 +107,10 @@
     <Compile Include="Migrations\202201041735014_DeletedSomeClasses.designer.cs">
       <DependentUpon>202201041735014_DeletedSomeClasses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201042339136_EditProfile.cs" />
+    <Compile Include="Migrations\202201042339136_EditProfile.designer.cs">
+      <DependentUpon>202201042339136_EditProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
@@ -153,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201041735014_DeletedSomeClasses.resx">
       <DependentUpon>202201041735014_DeletedSomeClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201042339136_EditProfile.resx">
+      <DependentUpon>202201042339136_EditProfile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
