@@ -9,6 +9,7 @@ using Data.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Logging;
+using Services;
 
 namespace CVSITE21.Controllers
 {
@@ -38,26 +39,13 @@ namespace CVSITE21.Controllers
 
         // POST: Profile/Create
         [HttpPost]
-        public async Task<ActionResult> Create(Profile model)
+        public ActionResult Create(ProfileCreateModel model)
         {
             try
             {
 
-                using (var context = new ApplicationDbContext())
-                {
-                    Console.WriteLine(User.Identity.GetUserId());
-                    Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
-                    profile.WorkExperiences = model.WorkExperiences;
-                    profile.Age = model.Age;
-                    profile.Address = model.Address;
-                    profile.Fullname = model.Fullname;
-                    profile.AcademicExperiences = model.AcademicExperiences;
-                    profile.ImagePath = model.ImagePath;
-                    profile.Skills = model.Skills;
-
-                    await context.SaveChangesAsync();
-                };
-
+                var service = new ProfileService(System.Web.HttpContext.Current);
+                service.SaveNewBook(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -65,6 +53,7 @@ namespace CVSITE21.Controllers
                 return View(model);
             }
         }
+
 
         // GET: Profile/Edit/5
         public ActionResult Edit(int id)
@@ -111,3 +100,5 @@ namespace CVSITE21.Controllers
         }
     }
 }
+
+
