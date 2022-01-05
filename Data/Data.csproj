@@ -110,6 +110,10 @@
     <Compile Include="Migrations\202201042339136_EditProfile.designer.cs">
       <DependentUpon>202201042339136_EditProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201051923135_private_profile.cs" />
+    <Compile Include="Migrations\202201051923135_private_profile.designer.cs">
+      <DependentUpon>202201051923135_private_profile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201042339136_EditProfile.resx">
       <DependentUpon>202201042339136_EditProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201051923135_private_profile.resx">
+      <DependentUpon>202201051923135_private_profile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
