@@ -249,9 +249,11 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Manage\ChangeUsername.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
-    <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Create.cshtml" />
     <Content Include="Views\Image\Create.cshtml" />
+    <Content Include="Views\Profile\List.cshtml" />
+    <Content Include="Views\Profile\Createtest.cshtml" />
+    <Content Include="Views\Profile\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

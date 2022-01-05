@@ -1,0 +1,179 @@
+﻿@model Data.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <br />
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>Profile Details</h4>
+                            </center>
+                        </div>
+                    </div>
+                    @using (@Html.BeginForm("Index", "Profile", FormMethod.Post))
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <center>
+
+                                    @if (Model.ImagePath == null || Model.ImagePath != null)
+                                    {
+                                        var imgurl = "";
+                                        if (Model.ImagePath == null)
+                                        {
+                                            imgurl = "/Images/Profilepic.png";
+                                        }
+                                        else
+                                        {
+                                            imgurl = "/Images/" + Model.ImagePath;
+
+                                        }
+                                        <img src="@imgurl" width="100px" />
+                                    }
+                                </center>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <center>
+                                <label>Name</label>
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.Fullname)
+                                </div>
+                            </center>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row, text-center">
+
+                            <div class="col-md-3">
+                                <label class="text-center">Age</label>
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.Age)
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-center">Email</label>
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.Email)
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-center">Address</label>
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.Address)
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="text-center">Skills</label>
+                                <div class="form-group">
+                                    @Html.DisplayFor(model => model.Skills)
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col">
+                                <hr>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>Project List</h4>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>Previous experience</h4>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                            <center>@Html.DisplayFor(model => model.WorkExperiences)</center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <center>
+                                <h4>Academic merits</h4>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                            <center>@Html.DisplayFor(model => model.AcademicExperiences)</center>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
