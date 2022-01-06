@@ -67,18 +67,17 @@ namespace CVSITE21.Controllers
 
 
 
-        [HttpGet]
-        public async Task<ActionResult> Details(string userId)
+        public ActionResult Details(string id)
         {
+            var newid = id.Replace('-', '.');
             using (var context = new ApplicationDbContext())
             {
-                if (userId == null)
+                if (newid == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                var decodedId = System.Web.HttpUtility.UrlDecode(userId);
-                Profile profile = await context.Profiles.FindAsync(decodedId);
+                Profile profile = context.Profiles.Find(newid);
                 if (profile == null)
                 {
                     return new HttpStatusCodeResult(209);

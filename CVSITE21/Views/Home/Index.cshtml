@@ -42,7 +42,7 @@
 
                         <td>
 
-                            @Html.ActionLink("View profile", "Details", new { id = item.UserId }) |
+                            @Html.ActionLink("View profile", "Details", "Profile", new { id = item.UserId.Replace('.', '-') }, null) |
                         </td>
                     </tr>
                 }
