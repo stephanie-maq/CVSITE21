@@ -65,16 +65,17 @@ namespace CVSITE21.Controllers
 
 
 
-        public ActionResult Details(string UserId)
+        public ActionResult Details(string id)
         {
+            var newid = id.Replace('-', '.');
             using (var context = new ApplicationDbContext())
             {
-                if (UserId == null)
+                if (newid == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var encodedId = "";
-                Profile profile = context.Profiles.Find(UserId);
+
+                Profile profile = context.Profiles.Find(newid);
                 if (profile == null)
                 {
                     return HttpNotFound();
