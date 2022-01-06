@@ -9,6 +9,7 @@ using Data.Models;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Logging;
+using System.Net;
 
 namespace CVSITE21.Controllers
 {
@@ -25,6 +26,69 @@ namespace CVSITE21.Controllers
 
         }
 
+
+        public ActionResult List(string search)
+        {
+
+            using (var context = new ApplicationDbContext())
+            {
+                var username = User.Identity.Name;
+                if (username != null && username != "")
+                {
+                    var profiles = context.Profiles.ToList();
+                    {
+
+                        if (search != null && search != "")
+                        {
+                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                        }
+                        if (search == "") { return View(profiles.Where(x => x.Fullname != null)); }
+                        else { return View(profiles.Where(x => x.Fullname != null)); }
+
+                    }
+                }
+                else
+                {
+                    var profiles = context.Profiles.ToList();
+                    {
+
+                        if (search != null && search != "")
+                        {
+                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                        }
+                        if (search == "") { return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); }
+                        else { return View(profiles.Where(x => x.IsPrivate.Equals(false))); }
+
+                    }
+                }
+            }
+
+        }
+
+
+
+        [HttpGet]
+        public async Task<ActionResult> Details(string userId)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                if (userId == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var decodedId = System.Web.HttpUtility.UrlDecode(userId);
+                Profile profile = await context.Profiles.FindAsync(decodedId);
+                if (profile == null)
+                {
+                    return new HttpStatusCodeResult(209);
+                }
+
+                return View(profile);
+            }
+        }
+
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             using (var context = new ApplicationDbContext())
@@ -36,6 +100,7 @@ namespace CVSITE21.Controllers
 
         }
 
+        [Authorize]
         // POST: Profile/Create
         [HttpPost]
         public async Task<ActionResult> Create(Profile model)
@@ -55,6 +120,7 @@ namespace CVSITE21.Controllers
                     profile.AcademicExperiences = model.AcademicExperiences;
                     profile.ImagePath = model.ImagePath;
                     profile.Skills = model.Skills;
+                    profile.IsPrivate = model.IsPrivate;
 
                     await context.SaveChangesAsync();
                 };
