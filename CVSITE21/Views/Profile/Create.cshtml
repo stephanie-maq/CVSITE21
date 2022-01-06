@@ -1,4 +1,4 @@
-﻿@model Data.Models.Profile
+﻿@model Shared.ProfileCreateModel
 
 @{
     ViewBag.Title = "View";
@@ -90,6 +90,25 @@
             @Html.ValidationMessageFor(model => model.IsPrivate, "IsPrivate", new { @class = "text-danger" })
         </div>
     </div>*@
+    
+    
+    <div class= "form-group">
+    @Html.LabelFor(model => model.Projects, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class= "col-md-10">
+  
+        <select name = "ProjectId">
+   
+            <option value = ""> -- Inget Projekt -- </option> 
+            @foreach(var project in Model.Projects) {
+                <option value = "@project.ProjectId"> @project.Name </option>
+
+            }
+        </select>
+        
+
+    @Html.ValidationMessageFor(model => model.Projects, "", new { @class = "text-danger" })
+</div>
+</div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

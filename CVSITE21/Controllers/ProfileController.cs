@@ -90,20 +90,33 @@ namespace CVSITE21.Controllers
         [Authorize]
         public async Task<ActionResult> Create()
         {
+            var model = new ProfileCreateModel();
             using (var context = new ApplicationDbContext())
             {
-                string userEmail = User.Identity.GetUserName();
-                Profile profile = await context.Profiles.FindAsync(userEmail);
-                return View(profile);
+                var projectsToChooseFrom = context.Projects.ToList();
+
+                model.Projects = projectsToChooseFrom
+                    .Select(x => new ProfileCreateProjectsModel { ProjectId = x.Id, Name = x.Title })
+                    .ToList();
+
+                return View(model);
             }
+            /* using (var context = new ApplicationDbContext())
+             {
+                 string userEmail = User.Identity.GetUserName();
+                 Profile profile = await context.Profiles.FindAsync(userEmail);
+                 return View(profile);
+             }
+            */
 
         }
 
         [Authorize]
         // POST: Profile/Create
         [HttpPost]
-        public async Task<ActionResult> Create(Profile model)
+        public async Task<ActionResult> Create(ProfileCreateModel model)
         {
+            
             try
             {
 
@@ -117,9 +130,10 @@ namespace CVSITE21.Controllers
                     profile.Fullname = model.Fullname;
                     profile.Email = model.Email;
                     profile.AcademicExperiences = model.AcademicExperiences;
-                    profile.ImagePath = model.ImagePath;
+                    // profile.ImagePath = model.ImagePath;
                     profile.Skills = model.Skills;
                     profile.IsPrivate = model.IsPrivate;
+                    
 
                     await context.SaveChangesAsync();
                 };
