@@ -25,12 +25,12 @@ namespace CVSITE21.Controllers
                 {
                     var profiles = context.Profiles.ToList();
                     {
-                        return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); 
+                        return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Take(3));
 
                     }
                 }
             }
-           
+
         }
 
         public ActionResult About()

@@ -27,14 +27,15 @@ namespace CVSITE21.Controllers
 
         }
 
-        
+
         public ActionResult List(string search)
         {
 
             using (var context = new ApplicationDbContext())
             {
-                var username = System.Web.HttpContext.Current.User.Identity.Name;
-                if (username != null && username != "") { 
+                var username = User.Identity.Name;
+                if (username != null && username != "")
+                {
                     var profiles = context.Profiles.ToList();
                     {
 
@@ -44,16 +45,17 @@ namespace CVSITE21.Controllers
                         }
                         if (search == "") { return View(profiles.Where(x => x.Fullname != null)); }
                         else { return View(profiles.Where(x => x.Fullname != null)); }
-                    
+
                     }
                 }
-                else {
+                else
+                {
                     var profiles = context.Profiles.ToList();
                     {
 
                         if (search != null && search != "")
                         {
-                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Where( x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                            return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                         }
                         if (search == "") { return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); }
                         else { return View(profiles.Where(x => x.IsPrivate.Equals(false))); }
@@ -66,25 +68,28 @@ namespace CVSITE21.Controllers
 
 
 
-        public ActionResult Details(string UserId)
+        [HttpGet]
+        public async Task<ActionResult> Details(string userId)
         {
             using (var context = new ApplicationDbContext())
             {
-                if (UserId == null)
+                if (userId == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                var encodedId = "";
-                Profile profile = context.Profiles.Find(UserId);
+
+                var decodedId = System.Web.HttpUtility.UrlDecode(userId);
+                Profile profile = await context.Profiles.FindAsync(decodedId);
                 if (profile == null)
                 {
-                    return HttpNotFound();
+                    return new HttpStatusCodeResult(209);
                 }
 
                 return View(profile);
             }
         }
 
+        [Authorize]
         public async Task<ActionResult> Create()
         {
             using (var context = new ApplicationDbContext())
@@ -96,6 +101,7 @@ namespace CVSITE21.Controllers
 
         }
 
+        [Authorize]
         // POST: Profile/Create
         [HttpPost]
         public async Task<ActionResult> Create(Profile model)
