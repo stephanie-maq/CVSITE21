@@ -1,5 +1,4 @@
 ﻿using CVSITE21.Data;
-using Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,36 +9,13 @@ namespace CVSITE21.Controllers
 {
     public class HomeController : Controller
     {
-        //laddar in startsidan
         public ActionResult Index()
         {
             using (var context = new ApplicationDbContext())
             {
                 var username = System.Web.HttpContext.Current.User.Identity.Name;
-                List<Profile> profileslist = context.Profiles.ToList();
-                List<Project> projects = context.Projects.ToList();
-
-                //kollar om det finns projekt, om det finns laddar den.
-                if (projects.Count() > 0)
-                {
-                    var project = projects.Last();
-                    ViewBag.Projectnamn = "Title: " + project.Title;
-                    var projectCreator = project.CreatedBy;
-                    var author = context.Profiles.FirstOrDefault(x => x.UserId == projectCreator);
-
-                    if (username == "" && author.IsPrivate == true)
-                    {
-                        ViewBag.Creator = "Private profile";
-                    }
-                    else
-                    {
-                        ViewBag.Creator = author.Fullname;
-                    }
-                }
-                //Kollar om man är inloggad så att man kan skicka ut CVlista med eller utan gömda användare
                 if (username != "")
                 {
-
                     var profiles = context.Profiles.ToList();
                     {
                         return View(context.Profiles.Where(x => x.Fullname != null).ToList());
