@@ -7,6 +7,9 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
+                @Html.ActionLink("Messages", "", "MessagesApi", routeValues: null, htmlAttributes: new { title = "Messages" })
+            </li>
+            <li>
                 @Html.ActionLink("Profile ", "index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
             </li>
             <li>
