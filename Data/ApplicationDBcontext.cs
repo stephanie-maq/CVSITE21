@@ -29,6 +29,8 @@ namespace CVSITE21.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Profile> Profiles { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
