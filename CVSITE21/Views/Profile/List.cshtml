@@ -17,7 +17,7 @@
         @using (@Html.BeginForm("List", "Profile", FormMethod.Get))
         {
             <b>Search by name:</b>
-          
+
             <div>
                 @Html.TextBox("search")
                 <input class="btn btn-default" type="submit" value="search" />
@@ -79,12 +79,16 @@
                         @Html.DisplayFor(modelItem => item.WorkExperiences)
                     </td>
                     <td>
-                        
+
                         @Html.ActionLink("View Profile", "Details", new { id = item.UserId.Replace('.', '-') }) |
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Send Message", "Details") |
                     </td>
                 </tr>
             }
         }
 
-        </table>
+    </table>
 </div>

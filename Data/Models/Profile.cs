@@ -22,5 +22,6 @@ namespace Data.Models
         public string WorkExperiences { get; set; }
         public bool IsPrivate { get; set; }
         public ICollection<Project> Projects { get; set; }
+
     }
 }

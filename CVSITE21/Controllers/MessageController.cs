@@ -1,8 +1,11 @@
-﻿using System;
+﻿using CVSITE21.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CVSITE21.Models;
+using Data.Models;
 
 namespace CVSITE21.Controllers
 {
@@ -11,7 +14,23 @@ namespace CVSITE21.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var username = User.Identity.Name;
+                var message = new Message()
+                {
+                    Sender = "gabriel@gmail.com",
+                    Receiver = "step@gmail.com",
+                    Text = "Hi",
+                    Read = false
+                };
+
+                var result = context.Messages.Where(mes => mes.Receiver == username).ToList();
+                context.Messages.Add(message);
+                context.SaveChanges();
+                return View(result);
+            }
+
         }
 
         // GET: Message/Details/5
@@ -28,18 +47,9 @@ namespace CVSITE21.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Createe()
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Message/Edit/5

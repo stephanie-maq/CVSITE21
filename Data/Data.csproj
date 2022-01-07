@@ -124,6 +124,14 @@
     <Compile Include="Migrations\202201070121074_add-class-message.designer.cs">
       <DependentUpon>202201070121074_add-class-message.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201072014283_changed-name-ofproperty-in-message.cs" />
+    <Compile Include="Migrations\202201072014283_changed-name-ofproperty-in-message.designer.cs">
+      <DependentUpon>202201072014283_changed-name-ofproperty-in-message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202201072155171_change-in-message.cs" />
+    <Compile Include="Migrations\202201072155171_change-in-message.designer.cs">
+      <DependentUpon>202201072155171_change-in-message.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -183,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201070121074_add-class-message.resx">
       <DependentUpon>202201070121074_add-class-message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201072014283_changed-name-ofproperty-in-message.resx">
+      <DependentUpon>202201072014283_changed-name-ofproperty-in-message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201072155171_change-in-message.resx">
+      <DependentUpon>202201072155171_change-in-message.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
