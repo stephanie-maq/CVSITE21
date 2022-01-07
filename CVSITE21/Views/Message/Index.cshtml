@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Data.Models.Message>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Sender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Text)
+        </th>
+        <th>
+            <!--<input type="checkbox" id="read" name="read" value="true">-->
+            @Html.DisplayNameFor(model => model.isRead)
+        </th>
+        <th></th>
+
+
+
+</table>
