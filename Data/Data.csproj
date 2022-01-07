@@ -120,10 +120,6 @@
     <Compile Include="Migrations\202201052225371_projectCreatedBy.designer.cs">
       <DependentUpon>202201052225371_projectCreatedBy.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202201070055329_add-message-class.cs" />
-    <Compile Include="Migrations\202201070055329_add-message-class.designer.cs">
-      <DependentUpon>202201070055329_add-message-class.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\Project.cs" />
@@ -179,9 +175,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201052225371_projectCreatedBy.resx">
       <DependentUpon>202201052225371_projectCreatedBy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201070055329_add-message-class.resx">
-      <DependentUpon>202201070055329_add-message-class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
