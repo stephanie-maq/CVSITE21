@@ -38,6 +38,10 @@ namespace CVSITE21.Controllers
                         ViewBag.Creator = author.Fullname;
                     }
                 }
+                else
+                {
+                    ViewBag.Projectnamn = "There are currently no projects";
+                }
                 //Kollar om man är inloggad så att man kan skicka ut CVlista med eller utan gömda användare
                 if (username != "")
                 {
