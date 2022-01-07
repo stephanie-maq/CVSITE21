@@ -1,5 +1,6 @@
 ﻿using CVSITE21.Data;
 using Data.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace CVSITE21.Controllers
                 if (projects.Count() > 0)
                 {
                     var project = projects.Last();
+
                     ViewBag.Projectnamn = "Title: " + project.Title;
                     var projectCreator = project.CreatedBy;
                     var author = context.Profiles.FirstOrDefault(x => x.UserId == projectCreator);
