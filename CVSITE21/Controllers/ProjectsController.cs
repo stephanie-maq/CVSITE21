@@ -54,9 +54,9 @@ namespace CVSITE21.Controllers
                     List<string> NormalProfiles = new List<string>();
 
                     //Lägger in i två listor, en med alla och en med bara de som inte är private.
-                    foreach (var projects_Users in activeUsers)
+                    foreach (var ProfileInProject in activeUsers)
                     {
-                        var profilesinproject = context.Profiles.Where(x => x.UserId == projects_Users.ProfileId).ToList();
+                        var profilesinproject = context.Profiles.Where(x => x.UserId == ProfileInProject.ProfileId).ToList();
 
                         foreach (var userProfile in profilesinproject)
                         {
