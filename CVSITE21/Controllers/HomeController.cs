@@ -23,9 +23,10 @@ namespace CVSITE21.Controllers
                 //kollar om det finns projekt, om det finns laddar den.
                 if (projects.Count() > 0)
                 {
+                    // Returnerar sista projektet i listan av projekt, och på så sätt får vi senast uppdaterade projekt.
                     var project = projects.Last();
 
-                    ViewBag.Projectnamn = "Project title is - " + project.Title;
+                    ViewBag.Projectnamn = "Project title is: " + project.Title;
                     var projectCreator = project.CreatedBy;
                     var author = context.Profiles.FirstOrDefault(x => x.UserId == projectCreator);
 
