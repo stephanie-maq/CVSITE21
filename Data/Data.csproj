@@ -128,6 +128,10 @@
     <Compile Include="Migrations\202201080258501_lägga in project många-många.designer.cs">
       <DependentUpon>202201080258501_lägga in project många-många.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201081819533_added_required_attribute_project.cs" />
+    <Compile Include="Migrations\202201081819533_added_required_attribute_project.designer.cs">
+      <DependentUpon>202201081819533_added_required_attribute_project.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -193,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201080258501_lägga in project många-många.resx">
       <DependentUpon>202201080258501_lägga in project många-många.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201081819533_added_required_attribute_project.resx">
+      <DependentUpon>202201081819533_added_required_attribute_project.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

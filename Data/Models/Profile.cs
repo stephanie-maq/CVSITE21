@@ -18,8 +18,10 @@ namespace Data.Models
         public int Age { get; set; }
         public string ImagePath { get; set; }
 
+        [Display(Name = "Academic Experiences")]
         public string AcademicExperiences { get; set; }
         public string Skills { get; set; }
+        [Display(Name = "Work Experiences")]
         public string WorkExperiences { get; set; }
         public bool IsPrivate { get; set; }
         public ICollection<Project> Projects { get; set; }

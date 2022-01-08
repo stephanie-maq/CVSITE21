@@ -92,16 +92,17 @@
                 {
 
                     <td>
-                        <input type="button" class="btn btn-default" value="Gå med i projekt" onclick="location.href='@Url.Action("AddToProfileInProject", "Projects", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-default" value="Join project" onclick="location.href='@Url.Action("AddToProfileInProject", "Projects", new { id = item.Id })'" />
                     </td>
                 }
                 else
                 {
                     <td>
-                        <input type="button" class="btn btn-default" value="Gå ur projekt" onclick="location.href='@Url.Action("RemoveFromProfileInProject", "Projects", new { id = item.Id })'" />
+                        <input type="button" class="btn btn-default" value="Leave project" onclick="location.href='@Url.Action("RemoveFromProfileInProject", "Projects", new { id = item.Id })'" />
                     </td>
                 }
             }
+            @* Tillåter usern att redigera eller ta bort projektet om den är skapar av projektet. *@
             @if (item.CreatedBy == ViewBag.ProfileId)
             {
                 <td>
