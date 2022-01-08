@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Models;
@@ -17,17 +18,7 @@ namespace CVSITE21.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var username = User.Identity.Name;
-                var message = new Message()
-                {
-                    Sender = "gabriel@gmail.com",
-                    Receiver = "step@gmail.com",
-                    Text = "Hi",
-                    Read = false
-                };
-
                 var userMessages = context.Messages.Where(mes => mes.Receiver == username).ToList();
-                context.Messages.Add(message);
-                context.SaveChanges();
                 return View(userMessages);
             }
 
@@ -49,20 +40,22 @@ namespace CVSITE21.Controllers
             }
         }
 
-        public ActionResult MarkAsRead(string username)
+        [HttpGet]
+        public async Task<ActionResult> MarkAsRead(int messageId)
         {
-            using (var context = new ApplicationDbContext())
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                Message message = context.Messages.Where(um => um.Id.ToString() == username).FirstOrDefault();
-                message.Read = true;
-                context.SaveChanges();
+                var dbMessage = await context.Messages.FindAsync(messageId);
+                dbMessage.Read = true;
+                await context.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
         }
 
 
         // POST: Message/Create
-        [HttpPost]
+        /*[HttpPost]
         public ActionResult Create([Bind(Include = "Id,Text,Sender,Receiver")] Message message)
         {
             using (var context = new ApplicationDbContext())
@@ -76,7 +69,7 @@ namespace CVSITE21.Controllers
 
                 return View();
             }
-        }
+        }*/
 
         // GET: Message/Edit/5
         public ActionResult Edit(int id)
