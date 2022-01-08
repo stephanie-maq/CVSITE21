@@ -82,8 +82,33 @@ namespace CVSITE21.Controllers
                 {
                     return new HttpStatusCodeResult(209);
                 }
+                //Skapar två listor en som används för att gå igenom samtliga projekt och lägga in data i den temporära modellen/klassen och en som visar upp datan i viewen från den temporära klassen/modellen.
+                List<ProfileWithProjectsForProfilepage> ProjectsForList = new List<ProfileWithProjectsForProfilepage>();
+                ProfileWithProjectsForProfilepage ProfileWithProjectsForProfilepage = null;
 
-                return View(profile);
+                ProfileWithProjectsForProfilepage = new ProfileWithProjectsForProfilepage(profile.UserId, profile.Email, profile.Fullname, profile.Address, profile.Age, profile.ImagePath, profile.AcademicExperiences, profile.Skills, profile.WorkExperiences);
+                
+
+               
+                    var ActiveInProjects = context.ProfileInProject.Where(x => x.ProfileId == profile.UserId).ToList();
+                    List<string> ProjectsList = new List<string>();
+
+                    //Lägger in alla project i en lista.
+                    foreach (var ProfileInProject in ActiveInProjects)
+                    {
+                        var projectsInCurrentProfile = context.Projects.Where(x => x.Id == ProfileInProject.ProjectID).ToList();
+
+                        foreach (var userProjects in projectsInCurrentProfile)
+                        {
+                           
+                        ProjectsList.Add(userProjects.Title);
+                        }
+                    }
+                    ProfileWithProjectsForProfilepage.ListOfProject = ProjectsList;
+
+                    ProjectsForList.Add(ProfileWithProjectsForProfilepage);
+                
+                return View(ProfileWithProjectsForProfilepage);
             }
         }
 

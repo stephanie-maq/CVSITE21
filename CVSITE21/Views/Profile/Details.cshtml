@@ -1,4 +1,4 @@
-﻿@model Data.Models.Profile
+﻿@model Data.Models.ProfileWithProjectsForProfilepage
 
 @{
     ViewBag.Title = "Details";
@@ -118,7 +118,16 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server"></asp:GridView>
+                            @if (Model.ListOfProject.Count() == 0)
+                            {
+
+                            <p>Profile is not active in any projects.</p>
+
+                            }
+                            else
+                            {
+                                @Html.DropDownList("People in project", new SelectList(Model.ListOfProject, "Title"))
+                            }
                         </div>
                     </div>
                 </div>
