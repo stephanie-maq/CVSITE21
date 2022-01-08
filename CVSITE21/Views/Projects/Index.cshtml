@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Data.Models.Project>
+﻿@model IEnumerable<Data.Models.ProjectWithProfilesForList>
 
 @{
     ViewBag.Title = "Index";
@@ -40,7 +40,17 @@
                 <th>
                     @Html.DisplayNameFor(model => model.DateCreated)
                 </th>
-                <th></th>
+                @*Sätter titel på colum baserat på om besökaren kan see hidden eller ej.*@
+                <th>
+                    @if (ViewBag.ProfileId == null)
+                    {
+                        <p>Active people in project, log in to see hidden profiles!</p>
+                    }
+                    else
+                    {
+                        <p>Active people in project</p>
+                    }
+                </th>
             </tr>
             @if (Model.Count() == 0)
             {
@@ -50,8 +60,8 @@
             }
             else
             {
-            foreach (var item in Model)
-            {
+                foreach (var item in Model)
+                {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -62,16 +72,47 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
+            <td>
+                @*Lägger ut de profiler som valt att vara med i project beroende på om current user är inloggad och de i projectet är hidden.*@
+                @if (ViewBag.ProfileId == null)
+                {
+                    @Html.DropDownList("People in project", new SelectList(item.ListOfNormalProfiles, "Firstname"))
+                }
+                else if (ViewBag.ProfileId != null)
+                {
+                    @Html.DropDownList("People in project", new SelectList(item.ListOfHiddenProfiles, "Firstname"))
+                }
+            </td>
             <td>@Html.ActionLink("Details", "Details", new { id = item.Id }) </td>
+
+            @if (ViewBag.ProfileId != null)
+            {
+
+                if (!ViewBag.Projects.Contains(item.Id.ToString()))
+                {
+
+                    <td>
+                        <input type="button" class="btn btn-default" value="Gå med i projekt" onclick="location.href='@Url.Action("AddToProfileInProject", "Projects", new { id = item.Id })'" />
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <input type="button" class="btn btn-default" value="Gå ur projekt" onclick="location.href='@Url.Action("RemoveFromProfileInProject", "Projects", new { id = item.Id })'" />
+                    </td>
+                }
+            }
             @if (item.CreatedBy == ViewBag.ProfileId)
             {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
 
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>}
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
         </tr>
-            }}
+                }
+            }
 
         </table>
      

@@ -24,5 +24,6 @@ namespace Data.Models
 
         public DateTime DateCreated { get; set; }
 
+        public ICollection<ProfileInProject> ActiveUsers { get; set; }
     }
 }

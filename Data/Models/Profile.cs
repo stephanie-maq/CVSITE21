@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
 {
@@ -22,5 +23,6 @@ namespace Data.Models
         public string WorkExperiences { get; set; }
         public bool IsPrivate { get; set; }
         public ICollection<Project> Projects { get; set; }
+        public ICollection<ProfileInProject> ActiveInProjects { get; set; }
     }
 }
