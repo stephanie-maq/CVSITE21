@@ -42,14 +42,40 @@ namespace CVSITE21.Controllers
         // GET: Message/Create
         public ActionResult Create()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+
+                return View();
+            }
         }
+
+        public ActionResult MarkAsRead(string username)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                Message message = context.Messages.Where(um => um.Id.ToString() == username).FirstOrDefault();
+                message.Read = true;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+        }
+
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Createe()
+        public ActionResult Create([Bind(Include = "Id,Text,Sender,Receiver")] Message message)
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                if (ModelState.IsValid)
+                {
+                    context.Messages.Add(message);
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View();
+            }
         }
 
         // GET: Message/Edit/5
