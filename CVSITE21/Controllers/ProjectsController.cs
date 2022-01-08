@@ -201,13 +201,15 @@ namespace CVSITE21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Description,DateCreated,ImagePath")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,CreatedBy,Description,DateCreated,ImagePath")] Project project)
         {
             using (var context = new ApplicationDbContext())
             {
                 if (ModelState.IsValid)
                 {
                     context.Entry(project).State = EntityState.Modified;
+                    string username = User.Identity.GetUserName();
+                    project.CreatedBy = username;
                     context.SaveChanges();
                     return RedirectToAction("Index");
                 }

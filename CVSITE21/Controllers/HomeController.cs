@@ -16,6 +16,7 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+
                 var username = System.Web.HttpContext.Current.User.Identity.Name;
                 List<Profile> profileslist = context.Profiles.ToList();
                 List<Project> projects = context.Projects.ToList();
