@@ -25,10 +25,10 @@ namespace CVSITE21.Controllers
                     Read = false
                 };
 
-                var result = context.Messages.Where(mes => mes.Receiver == username).ToList();
+                var userMessages = context.Messages.Where(mes => mes.Receiver == username).ToList();
                 context.Messages.Add(message);
                 context.SaveChanges();
-                return View(result);
+                return View(userMessages);
             }
 
         }

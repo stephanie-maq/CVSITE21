@@ -23,5 +23,6 @@ namespace Data.Models
         public bool IsPrivate { get; set; }
         public ICollection<Project> Projects { get; set; }
 
+
     }
 }

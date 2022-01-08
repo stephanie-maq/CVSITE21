@@ -17,6 +17,7 @@ namespace Data.Models
         [Display(Name = "From")]
         public string Sender { get; set; }
         public string Text { get; set; }
+        [Display(Name = "To")]
         public string Receiver { get; set; }
         public bool Read { get; set; }
 

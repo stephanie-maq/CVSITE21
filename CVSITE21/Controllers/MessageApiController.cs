@@ -11,20 +11,19 @@ namespace CVSITE21.Controllers
 {
     public class MessageApiController : ApiController
     {
-        public IHttpActionResult SendMessage(string name, string text, string sender)
+        public IHttpActionResult SendMessage(int id, string text, string sender)
         {
             using (var context = new ApplicationDbContext())
             {
-                var username = User.Identity.Name;
+                string receiver = context.Profiles.Where(m => m.UserId == id.ToString()).ToString();
                 var message = new Message()
                 {
                     Sender = sender,
-                    Receiver = name,
+                    Receiver = receiver,
                     Text = text,
                     Read = false,
 
                 };
-                var receiver = context.Messages.Where(m => m.Receiver == username);
                 context.Messages.Add(message);
                 context.SaveChanges();
 
@@ -39,8 +38,8 @@ namespace CVSITE21.Controllers
             using (var context = new ApplicationDbContext())
             {
                 Profile profile = context.Profiles.Where(u => u.UserId == username).FirstOrDefault();
-                int unreadcount = context.Messages.Where(um => um.Read == false && um.Receiver == username).Count();
-                return unreadcount;
+                int unreadMessages = context.Messages.Where(m => m.Read == false && m.Receiver == username).Count();
+                return unreadMessages;
             }
 
         }
