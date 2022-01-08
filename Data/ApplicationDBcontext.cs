@@ -2,8 +2,12 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Data.Models;
+using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CVSITE21.Data
 {
@@ -29,11 +33,23 @@ namespace CVSITE21.Data
         public DbSet<Project> Projects { get; set; }
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<ProfileInProject> ProfileInProject { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Profile>().HasMany(x => x.ActiveInProjects)
+                .WithRequired(x => x.Profile);
+            modelBuilder.Entity<Project>().HasMany(x => x.ActiveUsers)
+                .WithRequired(x => x.Project);
+            modelBuilder.Entity<ProfileInProject>()
+                .HasKey(x => new { ProfileId = x.ProfileId, ProjectID = x.ProjectID });
+        }
 
     }
 }

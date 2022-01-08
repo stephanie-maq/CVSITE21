@@ -26,21 +26,65 @@ namespace CVSITE21.Controllers
                 var username = System.Web.HttpContext.Current.User.Identity.Name;
                 if (username != "")
                 {
-                    string profileId = username;
-                    ViewBag.ProfileId = profileId;
-                }
-                var projects = context.Projects.ToList();
-                {
+                    ViewBag.ProfileId = username;
 
+                    var ProjectIdWhereProfileIdIsCurrent = context.ProfileInProject.Where(x => x.ProfileId == username).ToList();
+                    List<string> ListOfProjectIDs = new List<string>();
+                    foreach (var item in ProjectIdWhereProfileIdIsCurrent)
+                    {
+                        ListOfProjectIDs.Add(item.ProjectID.ToString());
+                    }
+                    ViewBag.Projects = ListOfProjectIDs;
+                }
+
+                List<Project> allProjects = new List<Project>();
+                List<ProjectWithProfilesForList> ProjectsForIndexList = new List<ProjectWithProfilesForList>();
+                allProjects = context.Projects.Include(x => x.ActiveUsers).ToList();
+
+                foreach (var item in allProjects)
+                {
+                    ProjectWithProfilesForList ProjectWithProfilesForList = null;
+                    
+                    ProjectWithProfilesForList = new ProjectWithProfilesForList(item.Id, item.Title, item.CreatedBy, item.Description, item.DateCreated);
+                    
+                    
+                    var activeUsers = context.ProfileInProject.Where(x => x.ProjectID == item.Id).ToList();
+                    List<string> HiddenProfiles = new List<string>();
+                    List<string> NormalProfiles = new List<string>();
+
+                    //Gör 
+                    foreach (var projects_Users in activeUsers)
+                    {
+                        var profilesinproject = context.Profiles.Where(x => x.UserId == projects_Users.ProfileId).ToList();
+
+                        foreach (var userProfile in profilesinproject)
+                        {
+                            HiddenProfiles.Add(userProfile.UserId);
+                            if (userProfile.IsPrivate == false)
+                            {
+                                NormalProfiles.Add(userProfile.UserId);
+                            }
+                        }
+                    }
+                    ProjectWithProfilesForList.ListOfHiddenProfiles = HiddenProfiles;
+                    ProjectWithProfilesForList.ListOfNormalProfiles = NormalProfiles;
+
+                    ProjectsForIndexList.Add(ProjectWithProfilesForList);
+                }
+
+                
+
+                
+                {
                     if (searchBy == "Date" && search != "")
                     {
-                        return View(context.Projects.Where(x => x.DateCreated.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
+                        return View(ProjectsForIndexList.Where(x => x.DateCreated.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                     }
                     else if (searchBy == "Name" && search != "")
                     {
-                        return View(context.Projects.Where(x => x.Title.ToLower().Contains(search.ToLower().ToString())).ToList());
+                        return View(ProjectsForIndexList.Where(x => x.Title.ToLower().Contains(search.ToLower().ToString())).ToList());
                     }
-                    else { return View(projects); }
+                    else { return View(ProjectsForIndexList); }
                 }
             }
 
@@ -91,6 +135,34 @@ namespace CVSITE21.Controllers
                 }
 
                 return View(project);
+            }
+        }
+
+        public ActionResult AddToProfileInProject(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                string username = System.Web.HttpContext.Current.User.Identity.Name;
+
+                context.ProfileInProject.Add(new ProfileInProject { ProjectID = id, ProfileId = username });
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult RemoveFromProfileInProject(int id)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                string username = System.Web.HttpContext.Current.User.Identity.Name;
+
+                var wantedProject = context.ProfileInProject.Where(x => x.ProjectID == id && x.ProfileId == username).FirstOrDefault(); ;
+
+                context.ProfileInProject.Remove(wantedProject);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
             }
         }
 
