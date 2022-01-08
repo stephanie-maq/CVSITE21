@@ -25,7 +25,7 @@ namespace CVSITE21.Controllers
                 {
                     var project = projects.Last();
 
-                    ViewBag.Projectnamn = "Title: " + project.Title;
+                    ViewBag.Projectnamn = "Project title is - " + project.Title;
                     var projectCreator = project.CreatedBy;
                     var author = context.Profiles.FirstOrDefault(x => x.UserId == projectCreator);
 
