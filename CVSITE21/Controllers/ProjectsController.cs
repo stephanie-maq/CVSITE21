@@ -23,6 +23,7 @@ namespace CVSITE21.Controllers
 
             using (var context = new ApplicationDbContext())
             {
+                //Hämtar Id från context för att kontrollera om besökaren är inloggad.
                 var username = System.Web.HttpContext.Current.User.Identity.Name;
                 if (username != "")
                 {
@@ -36,7 +37,7 @@ namespace CVSITE21.Controllers
                     }
                     ViewBag.Projects = ListOfProjectIDs;
                 }
-
+                //Skapar två listor en som används för att gå igenom samtliga projekt och lägga in data i den temporära modellen/klassen och en som visar upp datan i viewen från den temporära klassen/modellen.
                 List<Project> allProjects = new List<Project>();
                 List<ProjectWithProfilesForList> ProjectsForIndexList = new List<ProjectWithProfilesForList>();
                 allProjects = context.Projects.Include(x => x.ActiveUsers).ToList();
@@ -52,7 +53,7 @@ namespace CVSITE21.Controllers
                     List<string> HiddenProfiles = new List<string>();
                     List<string> NormalProfiles = new List<string>();
 
-                    //Gör 
+                    //Lägger in i två listor, en med alla och en med bara de som inte är private.
                     foreach (var projects_Users in activeUsers)
                     {
                         var profilesinproject = context.Profiles.Where(x => x.UserId == projects_Users.ProfileId).ToList();
@@ -74,7 +75,7 @@ namespace CVSITE21.Controllers
 
                 
 
-                
+                //Sql querys för att få till sökfunktionen på datum eller namn
                 {
                     if (searchBy == "Date" && search != "")
                     {
