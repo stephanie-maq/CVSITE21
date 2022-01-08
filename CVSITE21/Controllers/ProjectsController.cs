@@ -23,6 +23,12 @@ namespace CVSITE21.Controllers
 
             using (var context = new ApplicationDbContext())
             {
+                var username = System.Web.HttpContext.Current.User.Identity.Name;
+                if (username != "")
+                {
+                    string profileId = username;
+                    ViewBag.ProfileId = profileId;
+                }
                 var projects = context.Projects.ToList();
                 {
 
