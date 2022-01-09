@@ -144,6 +144,7 @@
     <Compile Include="Models\Project.cs" />
     <Compile Include="Models\ProjectWithProfilesForList.cs" />
     <Compile Include="Models\SaveImage.cs" />
+    <Compile Include="Models\SendMessageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

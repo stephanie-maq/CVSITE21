@@ -1,4 +1,4 @@
-﻿@model CVSITE21.Models.SendMessageViewModel
+﻿@model Data.Models.SendMessageViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -12,13 +12,21 @@
     <div class="form-horizontal">
         <h1>Send message to @Model.Profile.Fullname - @Model.Profile.Email</h1>
 
-        @if (!Request.IsAuthenticated)
+        @if (Model.Sender == null)
         {
             <div class="col-md-10">
                 @Html.LabelFor(model => model.Message.Sender);
                 @Html.EditorFor(model => model.Message.Sender, new { htmlAttributes = new { @ID = "sender" } })
             </div>
         }
+        else
+        {
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Message.Sender);
+                @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @ID = "sender", @readonly = "readonly" } })
+            </div>
+        }
+
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.Message.Text, 4, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", id = "msg-text" })
             @Html.ValidationMessageFor(model => model.Message.Text, "", new { @class = "text-danger" })
