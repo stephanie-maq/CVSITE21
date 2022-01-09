@@ -213,39 +213,6 @@ namespace CVSITE21.Controllers
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
-
-
-        /* public ActionResult ChangeUsername()
-         {
-             var model = new ChangeUsernameViewModel
-             {
-                 NewUsername = "",
-                 CurrentUsername = User.Identity.GetUserName()
-             };
-             return View(model);
-         }
-         [HttpPost]
-         [ValidateAntiForgeryToken]
-         public async Task<ActionResult> ChangeUsername(ChangeUsernameViewModel model)
-         {
-             if (!ModelState.IsValid)
-             {
-                 return View(model);
-             }
-
-             var result = await UserManager.FindByEmailAsync(User.Identity.Name);
-             result.UserName = model.NewUsername;
-             await UserManager.UpdateAsync(result);
-
-             /*  var modell = new ChangeUsernameViewModel
-               {
-                   NewUsername = model.NewUsername,
-                   TextBox = model.NewUsername
-               };
-             return View();
-         } */
-
-        //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
