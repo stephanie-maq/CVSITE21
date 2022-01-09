@@ -1,8 +1,12 @@
-﻿using System;
+﻿using CVSITE21.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using CVSITE21.Models;
+using Data.Models;
 
 namespace CVSITE21.Controllers
 {
@@ -11,7 +15,13 @@ namespace CVSITE21.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                var username = User.Identity.Name;
+                var userMessages = context.Messages.Where(mes => mes.Recipient == username).ToList();
+                return View(userMessages);
+            }
+
         }
 
         // GET: Message/Details/5
@@ -21,24 +31,26 @@ namespace CVSITE21.Controllers
         }
 
         // GET: Message/Create
-        public ActionResult Create()
+        [HttpGet]
+        public async Task<ActionResult> Create(string userId)
         {
-            return View();
+            using (var context = new ApplicationDbContext())
+            {
+                Profile profile = await context.Profiles.FindAsync(userId);
+                return View(new SendMessageViewModel { Profile = profile });
+            }
         }
 
-        // POST: Message/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [HttpGet]
+        public async Task<ActionResult> MarkAsRead(int messageId)
         {
-            try
+            using (ApplicationDbContext context = new ApplicationDbContext())
             {
-                // TODO: Add insert logic here
+                var dbMessage = await context.Messages.FindAsync(messageId);
+                dbMessage.isRead = true;
+                await context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
             }
         }
 
