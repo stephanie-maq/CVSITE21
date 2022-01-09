@@ -84,7 +84,7 @@
                     </td>
                     <td>
 
-                        @Html.ActionLink("Send Message", "Create", "Message")
+                        @Html.ActionLink("Send Message", actionName: "SendMessage", routeValues: new { userId = item.UserId })
 
                     </td>
                 </tr>

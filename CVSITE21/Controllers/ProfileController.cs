@@ -132,6 +132,12 @@ namespace CVSITE21.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult SendMessage(string userId)
+        {
+            return RedirectToAction(actionName: "Create", controllerName: "Message", routeValues: new { userId = userId });
+        }
+
         // GET: Profile/Edit/5
         public ActionResult Edit(int id)
         {

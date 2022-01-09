@@ -1,10 +1,8 @@
-﻿@model Data.Models.Message
+﻿@model CVSITE21.Models.SendMessageViewModel
 
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
 
 
 @using (Html.BeginForm())
@@ -12,39 +10,23 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Message</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Receiver, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.LabelFor(model => model.Receiver, new { @class = "col-md-2 control-label" })
-                @Html.ValidationMessageFor(model => model.Receiver, "", new { @class = "text-danger" })
-            </div>
+        <h1>Send message to @Model.Profile.Fullname - @Model.Profile.Email</h1>
+
+        <div class="col-md-10">
+            @Html.LabelFor(model => model.Message.Sender);
+            @Html.EditorFor(model => model.Message.Sender, new { htmlAttributes = new { @ID = "sender" } })
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.LabelFor(model => model.Sender, new { @class = "col-md-2 control-label" })
-                @Html.ValidationMessageFor(model => model.Sender, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Text, 4, 40, htmlAttributes: new { style = "width: 40%; max-width: 40%;" })
-                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
-            </div>
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Message.Text, 4, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", id = "msg-text" })
+            @Html.ValidationMessageFor(model => model.Message.Text, "", new { @class = "text-danger" })
         </div>
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Send" class="btn btn-default" />
-            </div>
+        <div class="col-md-10">
+            <button type="button" id="send-btn">Send</button>
         </div>
+
     </div>
 }
 
@@ -53,5 +35,17 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript">
+        $('#send-btn').click(function() {
+            var sender = $('#sender').val();
+            var text = $('#msg-text').val();
+
+            $.post('/api/messages/' + sender + '/' + '@Model.Profile.Email' + '/' + text,
+                function() {
+                    window.alert('Meddelandet har skickats');
+                    window.location.reload();
+                });
+        });
+    </script>
     @Scripts.Render("~/bundles/jqueryval")
 }

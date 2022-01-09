@@ -31,12 +31,13 @@ namespace CVSITE21.Controllers
         }
 
         // GET: Message/Create
-        public ActionResult Create()
+        [HttpGet]
+        public async Task<ActionResult> Create(string userId)
         {
             using (var context = new ApplicationDbContext())
             {
-
-                return View();
+                Profile profile = await context.Profiles.FindAsync(userId);
+                return View(new SendMessageViewModel { Profile = profile });
             }
         }
 
