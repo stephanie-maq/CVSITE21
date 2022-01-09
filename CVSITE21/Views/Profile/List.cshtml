@@ -82,11 +82,14 @@
 
                         @Html.ActionLink("View Profile", "Details", new { id = item.UserId.Replace('.', '-') }) |
                     </td>
-                    <td>
+                    @if (ViewBag.ProfileId != item.UserId)
+                    {
+                        <td>
 
-                        @Html.ActionLink("Send Message", actionName: "SendMessage", routeValues: new { userId = item.UserId })
+                            @Html.ActionLink("Send Message", actionName: "SendMessage", routeValues: new { userId = item.UserId })
 
-                    </td>
+                        </td>
+                    }
                 </tr>
             }
         }
