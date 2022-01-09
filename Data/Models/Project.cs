@@ -18,12 +18,15 @@ namespace Data.Models
         public virtual Profile ProfileEmail { get; set; }
 
         [Required(ErrorMessage = "Please enter a title for your project")]
+        [StringLength(40, MinimumLength = 2, ErrorMessage = "The title should be between {2} and {1} characters.")]
         public string Title { get; set; }
         public string CreatedBy { get; set; }
 
-        [Required(ErrorMessage = "Please enter a description for your project")]
+        [Required(ErrorMessage = "Please enter a short description for your project")]
+        [StringLength(150, MinimumLength = 10, ErrorMessage = "The description should be between {2} and {1} characters.")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Enter a date with the following format: mm/dd/yyyy")]
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
 
