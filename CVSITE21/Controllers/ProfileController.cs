@@ -20,7 +20,18 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                
+                string profileName = null;
+                var username = User.Identity.Name;
+                Profile senderprofile = await context.Profiles.FindAsync(username);
+
+                if (senderprofile.Fullname != null)
+                {
+                    ViewBag.profileName = senderprofile.Fullname.ToString();
+                }
+                else
+                {
+                    ViewBag.profileName = null;
+                }
                 Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
                 return View(profile);
             }

@@ -19,11 +19,14 @@
                                 <p>
                                     @Html.ActionLink("Edit", "Create")
                                 </p>
-                                if
+                                @if (ViewBag.profileName != null) {
                                 <p>
                                     @Html.ActionLink("Edit profilePic", "Create", "Image")
                                 </p>
-
+                                }
+                                else { 
+                                <p>Create a profile/CV above to set a picture.</p>
+                                }
                             </center>
                         </div>
                     </div>
