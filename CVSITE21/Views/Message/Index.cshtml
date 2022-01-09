@@ -5,21 +5,58 @@
 }
 
 <h2>Index</h2>
+@using (Html.BeginForm("MarkAsread", "Message", FormMethod.Post))
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                <!--<input type="checkbox" id="read" name="read" value="true">-->
+                @Html.DisplayNameFor(model => model.isRead)
+            </th>
+            <th></th>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Sender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Text)
-        </th>
-        <th>
-            <!--<input type="checkbox" id="read" name="read" value="true">-->
-            @Html.DisplayNameFor(model => model.isRead)
-        </th>
-        <th></th>
+            @if (Model.Count() == 0)
+            {
+            <tr>
+                <td colspan="4">You have no messages.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Sender)
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
 
-</table>
+                    <td>
+                        @if (item.isRead)
+                        {
+                            <p>✓</p>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Mark as read", "MarkAsRead", new { messageId = item.Id })
+                        }
+
+                    </td>
+
+                </tr>
+            }
+        }
+
+        </table>
+
+    }
