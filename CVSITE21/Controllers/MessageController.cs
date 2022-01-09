@@ -36,6 +36,7 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
+
                 Profile profile = await context.Profiles.FindAsync(userId);
                 return View(new SendMessageViewModel { Profile = profile });
             }
@@ -51,6 +52,16 @@ namespace CVSITE21.Controllers
                 await context.SaveChangesAsync();
 
                 return RedirectToAction("Index");
+            }
+        }
+
+        public static int GetUnreadMessages(string username)
+        {
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                Profile profile = context.Profiles.Find(username);
+                int unreadMessagesCount = context.Messages.Count(um => um.isRead == false && um.Recipient == username);
+                return unreadMessagesCount;
             }
         }
 
