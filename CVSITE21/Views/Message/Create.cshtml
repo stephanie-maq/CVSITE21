@@ -1,4 +1,4 @@
-﻿@model CVSITE21.Models.SendMessageViewModel
+﻿@model Data.Models.SendMessageViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -12,10 +12,20 @@
     <div class="form-horizontal">
         <h1>Send message to @Model.Profile.Fullname - @Model.Profile.Email</h1>
 
-        <div class="col-md-10">
-            @Html.LabelFor(model => model.Message.Sender);
-            @Html.EditorFor(model => model.Message.Sender, new { htmlAttributes = new { @ID = "sender" } })
-        </div>
+        @if (Model.Sender == null)
+        {
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Message.Sender);
+                @Html.EditorFor(model => model.Message.Sender, new { htmlAttributes = new { @ID = "sender" } })
+            </div>
+        }
+        else
+        {
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.Message.Sender);
+                @Html.EditorFor(model => model.Sender, new { htmlAttributes = new { @ID = "sender", @readonly = "readonly" } })
+            </div>
+        }
 
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.Message.Text, 4, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;", id = "msg-text" })
@@ -35,18 +45,21 @@
 </div>
 
 @section Scripts {
-    <script type="text/javascript">
-        $('#send-btn').click(function() {
-            var sender = $('#sender').val();
-            var text = $('#msg-text').val();
+    
+        <script type="text/javascript">
+            $('#send-btn').click(function () {
+                
+                var sender = $('#sender').val();
+                var text = $('#msg-text').val();
 
-            $.post('/api/messages/' + sender + '/' + '@Model.Profile.Email' + '/' + text,
-                function() {
-                    window.alert('Meddelandet har skickats');
-                    window.location.reload();
-                });
-        });
-    </script>
+                $.post('/api/messages/' + sender + '/' + '@Model.Profile.UserId' + '/' + text,
+                    function() {
+                        window.alert('Meddelandet har skickats');
+                        window.location.reload();
+                    });
+            });
+        </script>
+    
     @Scripts.Render("~/bundles/jqueryval")
 }
 

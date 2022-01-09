@@ -22,14 +22,14 @@ namespace Data.Models
         public List<string> ListOfNormalProfiles { get; set; }
     
 
-    public ProjectWithProfilesForList(int projectID, string title, string createdBy, string description, DateTime dateCreated)
-    {
-        Id = projectID;
-        Title = title;
-        CreatedBy = createdBy;
-        Description = description;
-        DateCreated = dateCreated;
-    }
+        public ProjectWithProfilesForList(int projectID, string title, string createdBy, string description, DateTime dateCreated)
+        {
+            Id = projectID;
+            Title = title;
+            CreatedBy = createdBy;
+            Description = description;
+            DateCreated = dateCreated;
+        }
 
     }
 }
