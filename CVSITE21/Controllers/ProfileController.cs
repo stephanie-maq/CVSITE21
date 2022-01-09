@@ -87,27 +87,27 @@ namespace CVSITE21.Controllers
                 ProfileWithProjectsForProfilepage ProfileWithProjectsForProfilepage = null;
 
                 ProfileWithProjectsForProfilepage = new ProfileWithProjectsForProfilepage(profile.UserId, profile.Email, profile.Fullname, profile.Address, profile.Age, profile.ImagePath, profile.AcademicExperiences, profile.Skills, profile.WorkExperiences);
-                
 
-               
-                    var ActiveInProjects = context.ProfileInProject.Where(x => x.ProfileId == profile.UserId).ToList();
-                    List<string> ProjectsList = new List<string>();
 
-                    //Lägger in alla project i en lista.
-                    foreach (var ProfileInProject in ActiveInProjects)
+
+                var ActiveInProjects = context.ProfileInProject.Where(x => x.ProfileId == profile.UserId).ToList();
+                List<string> ProjectsList = new List<string>();
+
+                //Lägger in alla project i en lista.
+                foreach (var ProfileInProject in ActiveInProjects)
+                {
+                    var projectsInCurrentProfile = context.Projects.Where(x => x.Id == ProfileInProject.ProjectID).ToList();
+
+                    foreach (var userProjects in projectsInCurrentProfile)
                     {
-                        var projectsInCurrentProfile = context.Projects.Where(x => x.Id == ProfileInProject.ProjectID).ToList();
 
-                        foreach (var userProjects in projectsInCurrentProfile)
-                        {
-                           
                         ProjectsList.Add(userProjects.Title);
-                        }
                     }
-                    ProfileWithProjectsForProfilepage.ListOfProject = ProjectsList;
+                }
+                ProfileWithProjectsForProfilepage.ListOfProject = ProjectsList;
 
-                    ProjectsForList.Add(ProfileWithProjectsForProfilepage);
-                
+                ProjectsForList.Add(ProfileWithProjectsForProfilepage);
+
                 return View(ProfileWithProjectsForProfilepage);
             }
         }
@@ -122,6 +122,12 @@ namespace CVSITE21.Controllers
                 return View(profile);
             }
 
+        }
+
+        [HttpGet]
+        public ActionResult SendMessage(string userId)
+        {
+            return RedirectToAction(actionName: "Create", controllerName: "Message", routeValues: new { userId = userId });
         }
 
         [Authorize]
