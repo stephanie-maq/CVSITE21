@@ -55,7 +55,7 @@ namespace CVSITE21.Controllers
                         return View(context.Profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false)).Where(x => x.Fullname.ToString().ToLower().Contains(search.ToLower().ToString())).ToList());
                     }
                     if (search == "") { return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); }
-                    else { return View(profiles.Where(x => x.IsPrivate.Equals(false))); }
+                    else { return View(profiles.Where(x => x.Fullname != null).Where(x => x.IsPrivate.Equals(false))); }
 
 
                 }
