@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using CVSITE21.Controllers
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -7,7 +9,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Messages", "index", "Message", routeValues: null, htmlAttributes: new { title = "Inbox" })
+                @Html.ActionLink($"Messages({MessageController.GetUnreadMessages(@User.Identity.Name)})", "index", "Message", routeValues: null, htmlAttributes: new { title = "Inbox" })
             </li>
             <li>
                 @Html.ActionLink("Profile ", "index", "Profile", routeValues: null, htmlAttributes: new { title = "Profile" })
