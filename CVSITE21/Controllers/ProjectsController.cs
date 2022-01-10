@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CVSITE21.Data;
+using Data.Migrations;
 using Data.Models;
 using Microsoft.AspNet.Identity;
 
@@ -91,25 +92,6 @@ namespace CVSITE21.Controllers
 
         }
 
-        public ActionResult Details(int? id)
-        {
-            using (var context = new ApplicationDbContext())
-            {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-
-                Project project = context.Projects.Find(id);
-                if (project == null)
-                {
-                    return HttpNotFound();
-                }
-
-                return View(project);
-            }
-        }
-
         // GET: Projects/Create
         [Authorize]
         public ActionResult Create()
@@ -144,7 +126,6 @@ namespace CVSITE21.Controllers
             using (var context = new ApplicationDbContext())
             {
                 string username = System.Web.HttpContext.Current.User.Identity.Name;
-
                 context.ProfileInProject.Add(new ProfileInProject { ProjectID = id, ProfileId = username });
                 context.SaveChanges();
 
