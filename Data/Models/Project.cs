@@ -27,7 +27,7 @@ namespace Data.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Enter a date with the following format: mm/dd/yyyy")]
-        [Display(Name = "Date Created")]
+        [Display(Name = "Start Date")]
         public DateTime DateCreated { get; set; }
 
         public ICollection<ProfileInProject> ActiveUsers { get; set; }

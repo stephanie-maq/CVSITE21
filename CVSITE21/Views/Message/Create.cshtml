@@ -60,7 +60,7 @@
             } else {
                 sender = $('#sender').val(); }
 
-            var receiver = '@Model.Profile.Email';
+            var receiver = '@Model.Profile.UserId';
 
             $.post('/api/messages/' + sender + '/' + receiver + '/' + text,
                 function() {
