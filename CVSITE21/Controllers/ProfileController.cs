@@ -20,20 +20,35 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-                string profileName = null;
-                var username = User.Identity.Name;
-                Profile senderprofile = await context.Profiles.FindAsync(username);
 
-                if (senderprofile.Fullname != null)
-                {
-                    ViewBag.profileName = senderprofile.Fullname.ToString();
-                }
-                else
-                {
-                    ViewBag.profileName = null;
-                }
                 Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
-                return View(profile);
+                
+                List<ProfileWithProjectsForProfilepage> ProjectsForList = new List<ProfileWithProjectsForProfilepage>();
+                ProfileWithProjectsForProfilepage ProfileWithProjectsForProfilepage = null;
+
+                ProfileWithProjectsForProfilepage = new ProfileWithProjectsForProfilepage(profile.UserId, profile.Email, profile.Fullname, profile.Address, profile.Age, profile.ImagePath, profile.AcademicExperiences, profile.Skills, profile.WorkExperiences);
+
+
+
+                var ActiveInProjects = context.ProfileInProject.Where(x => x.ProfileId == profile.UserId).ToList();
+                List<string> ProjectsList = new List<string>();
+
+                //Lägger in alla project i en lista.
+                foreach (var ProfileInProject in ActiveInProjects)
+                {
+                    var projectsInCurrentProfile = context.Projects.Where(x => x.Id == ProfileInProject.ProjectID).ToList();
+
+                    foreach (var userProjects in projectsInCurrentProfile)
+                    {
+
+                        ProjectsList.Add(userProjects.Title);
+                    }
+                }
+                ProfileWithProjectsForProfilepage.ListOfProject = ProjectsList;
+
+                ProjectsForList.Add(ProfileWithProjectsForProfilepage);
+
+                return View(ProfileWithProjectsForProfilepage);
             }
 
         }

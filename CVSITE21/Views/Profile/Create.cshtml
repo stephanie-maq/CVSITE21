@@ -18,6 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fullname, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
+                <p class="text-danger"> The profile is only visible once you put a name, therefor you can also 'deactivate' the profile by removing your fullname. All to comply with GDPR.</p>
                 @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
             </div>
@@ -73,6 +74,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Private profile, tick for yes.</label>
             <div class="col-md-10">
+                <p class="text-danger"> If the tick is selecten your profile will be hidden from anonymous users.</p>
                 <div class="checkbox">
                     @Html.EditorFor(model => model.IsPrivate)
                     @Html.ValidationMessageFor(model => model.IsPrivate, "", new { @class = "text-danger" })
