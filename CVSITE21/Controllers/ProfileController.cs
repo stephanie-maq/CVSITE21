@@ -20,9 +20,14 @@ namespace CVSITE21.Controllers
         {
             using (var context = new ApplicationDbContext())
             {
-
+                string profileName = null;
                 Profile profile = await context.Profiles.FindAsync(User.Identity.Name);
-                
+
+                if (profile.Fullname != null)
+                {
+                    ViewBag.profileName = profile.Fullname.ToString();
+                }
+
                 List<ProfileWithProjectsForProfilepage> ProjectsForList = new List<ProfileWithProjectsForProfilepage>();
                 ProfileWithProjectsForProfilepage ProfileWithProjectsForProfilepage = null;
 
