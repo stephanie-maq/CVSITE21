@@ -61,10 +61,13 @@ namespace CVSITE21.Controllers
 
                         foreach (var userProfile in profilesinproject)
                         {
-                            HiddenProfiles.Add(userProfile.UserId);
-                            if (userProfile.IsPrivate == false)
+                            if (userProfile.Fullname != null)
                             {
-                                NormalProfiles.Add(userProfile.UserId);
+                                HiddenProfiles.Add(userProfile.Fullname);
+                                if (userProfile.IsPrivate == false)
+                                {
+                                    NormalProfiles.Add(userProfile.Fullname);
+                                }
                             }
                         }
                     }
