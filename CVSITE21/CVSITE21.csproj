@@ -290,10 +290,6 @@
       <Project>{D5F03A5D-73F7-4F00-B4D8-155307B916FE}</Project>
       <Name>Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{893bf708-8e11-43c6-92ac-6e64aadbea4a}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

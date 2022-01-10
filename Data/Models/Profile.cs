@@ -12,6 +12,7 @@ namespace Data.Models
     {
         [Key] public string UserId { get; set; }
 
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
         public string Fullname { get; set; }
         public string Address { get; set; }
