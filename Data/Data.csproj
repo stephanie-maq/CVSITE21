@@ -136,6 +136,10 @@
     <Compile Include="Migrations\202201090418049_validation_added_project.designer.cs">
       <DependentUpon>202201090418049_validation_added_project.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201092336352_message_validation.cs" />
+    <Compile Include="Migrations\202201092336352_message_validation.designer.cs">
+      <DependentUpon>202201092336352_message_validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Profile.cs" />
@@ -208,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201090418049_validation_added_project.resx">
       <DependentUpon>202201090418049_validation_added_project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201092336352_message_validation.resx">
+      <DependentUpon>202201092336352_message_validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

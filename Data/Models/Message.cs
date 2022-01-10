@@ -16,6 +16,8 @@ namespace Data.Models
         [Display(Name = "From")]
         public string Sender { get; set; }
 
+        [Required]
+        [StringLength(200, MinimumLength = 2, ErrorMessage = "The message can't exceed {1} characters.")]
         public string Text { get; set; }
 
         public string Recipient { get; set; }
