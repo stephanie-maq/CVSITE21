@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "Projects")) 
+@using (Html.BeginForm("Create", "Projects"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Project</h4>
         <hr />
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -51,7 +51,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Go back ↩ ", "Index")
 </div>
 
 @section Scripts {
