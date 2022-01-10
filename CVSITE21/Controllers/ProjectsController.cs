@@ -45,10 +45,10 @@ namespace CVSITE21.Controllers
                 foreach (var item in allProjects)
                 {
                     ProjectWithProfilesForList ProjectWithProfilesForList = null;
-                    
+
                     ProjectWithProfilesForList = new ProjectWithProfilesForList(item.Id, item.Title, item.CreatedBy, item.Description, item.DateCreated);
-                    
-                    
+
+
                     var activeUsers = context.ProfileInProject.Where(x => x.ProjectID == item.Id).ToList();
                     List<string> HiddenProfiles = new List<string>();
                     List<string> NormalProfiles = new List<string>();
@@ -73,7 +73,7 @@ namespace CVSITE21.Controllers
                     ProjectsForIndexList.Add(ProjectWithProfilesForList);
                 }
 
-                
+
 
                 //Sql querys för att få till sökfunktionen på datum eller namn
                 {
@@ -122,7 +122,7 @@ namespace CVSITE21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,DateCreated,ImagePath")] Project project)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,DateCreated")] Project project)
         {
             using (var context = new ApplicationDbContext())
             {
@@ -192,7 +192,7 @@ namespace CVSITE21.Controllers
                         return View(project);
                     }
                 }
-                 return Redirect("~/Projects"); 
+                return Redirect("~/Projects");
             }
         }
 
@@ -201,7 +201,7 @@ namespace CVSITE21.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,CreatedBy,Description,DateCreated,ImagePath")] Project project)
+        public ActionResult Edit([Bind(Include = "Id,Title,CreatedBy,Description,DateCreated")] Project project)
         {
             using (var context = new ApplicationDbContext())
             {
