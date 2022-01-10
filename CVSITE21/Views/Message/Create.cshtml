@@ -10,7 +10,13 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h1>Send message to @Model.Profile.Fullname - @Model.Profile.Email</h1>
+
+
+        <h4>
+            <b> Send message to: @Model.Profile.Fullname - @Model.Profile.Email</b>
+        </h4>
+
+
 
         @if (Model.Sender == null)
         {
@@ -33,15 +39,16 @@
         </div>
 
         <div class="col-md-10">
-            <button type="button" id="send-btn">Send</button>
+            <button type="button" id="send-btn" style="width: 20%">Send</button>
+            <div>
+                @Html.ActionLink("Go back to list", "List", "Profile")
+            </div>
         </div>
 
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "List", "Profile")
-</div>
+
 
 @section Scripts {
     <script type="text/javascript">
@@ -57,7 +64,7 @@
 
             $.post('/api/messages/' + sender + '/' + receiver + '/' + text,
                 function() {
-                    window.alert('Meddelandet har skickats');
+                    window.alert('Message has been sent');
                     window.location.reload();
                 });
         });
