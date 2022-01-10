@@ -29,7 +29,7 @@ namespace CVSITE21.Controllers
             using (var context = new ApplicationDbContext())
             {
                 var username = System.Web.HttpContext.Current.User.Identity.Name;
-                var user = context.Profiles.First(a => a.Email == username);
+                var user = context.Profiles.First(a => a.UserId == username);
                 if (user.Fullname == null)
                 {
                     return Redirect("~/Profile/create");
@@ -63,7 +63,7 @@ namespace CVSITE21.Controllers
                     newImg.ImagePath = filename;
                     var filenameraw = filename.ToString();
                     var username = System.Web.HttpContext.Current.User.Identity.Name;
-                    var user = context.Profiles.First(a => a.Email == username);
+                    var user = context.Profiles.First(a => a.UserId == username);
 
 
 

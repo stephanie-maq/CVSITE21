@@ -14,11 +14,21 @@
                         <div class="col">
                             <center>
                                 <h4>Profile Details</h4>
+                                @if (ViewBag.profileName != null)
+                                {
+                                    
+                                }
+                                else
+                                {
+                            <h4 class="text-danger">
+                                Profile is deactivated, set name to activate.
+                            </h4>
+                                }
                             </center>
                             <center>
-                                <p>
+                                <h4>
                                     @Html.ActionLink("Edit", "Create")
-                                </p>
+                                </h4>
                                 @if (ViewBag.profileName != null) {
                                 <p>
                                     @Html.ActionLink("Edit profilePic", "Create", "Image")
