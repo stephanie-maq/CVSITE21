@@ -41,7 +41,7 @@ namespace CVSITE21.Controllers
                 var username = User.Identity.Name;
                 Profile senderprofile = await context.Profiles.FindAsync(username);
 
-                if (senderprofile != null)
+                if (senderprofile.Fullname != null)
                 {
                     sender = senderprofile.Fullname.ToString();
                 }
